@@ -1,7 +1,16 @@
 {
   "name": "@jpcpereira93/spotify-client",
   "private": true,
+  "version": "0.0.1",
   "type": "module",
+  "description": "A custom Spotify Client using React Router v7.",
+  "author": "José Pereira",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jpcpereira93/spotify-client.git"
+  },
+  "homepage": "https://github.com/jpcpereira93/spotify-client#readme",
   "scripts": {
     "build": "react-router build",
     "dev": "react-router dev",
