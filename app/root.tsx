@@ -7,8 +7,9 @@ import {
   Scripts,
   ScrollRestoration,
 } from "react-router";
+
 import { queryClient } from "~/core/api";
-import { Navbar } from "~/core/components";
+import { Navbar, Player, Section, SideMenu } from "~/core/components";
 import { authenticateSpotifyUser } from "~/core/services";
 
 import type { Route } from "./+types/root";
@@ -42,9 +43,15 @@ export function Layout({ children }: { children: React.ReactNode }) {
           <Meta />
           <Links />
         </head>
-        <body className="antialiased bg-neutral-100 dark:bg-slate-800/40 w-screen h-screen">
+        <body className="antialiased bg-neutral-100 dark:bg-slate-800/40 h-screen w-screen p-2 flex flex-col gap-2 overflow-hidden">
           <Navbar />
-          {children}
+          <main className="flex h-full w-full gap-2">
+            <div className="h-full w-1/3">
+              <SideMenu />
+            </div>
+            <Section>{children}</Section>
+          </main>
+          <Player />
           <ScrollRestoration />
           <Scripts />
         </body>

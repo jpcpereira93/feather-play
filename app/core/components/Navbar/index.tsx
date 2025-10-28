@@ -19,7 +19,7 @@ export const Navbar = () => {
     console.log(searchValue);
 
   return (
-    <nav className="w-full flex items-center justify-between p-2">
+    <nav className="w-full flex items-center justify-between py-2">
       <NavbarSection>
         <IconButton onClick={onBackClick}>
           <ChevronLeft />
