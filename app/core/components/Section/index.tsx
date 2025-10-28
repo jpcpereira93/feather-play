@@ -5,7 +5,7 @@ interface SectionProps {
 }
 
 export const Section = ({ children }: SectionProps) => (
-  <section className="h-full w-full bg-slate-700/60 text-slate-400 p-2 rounded-lg">
+  <section className="h-full w-full bg-slate-700/60 text-slate-400 p-2 rounded-lg overflow-hidden">
     {children}
   </section>
 );

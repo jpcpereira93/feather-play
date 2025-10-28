@@ -1,4 +1,3 @@
-import type { Track } from "@spotify/web-api-ts-sdk";
 import {
   Pause,
   Play,
@@ -15,19 +14,10 @@ import {
   useToggleSpotifyShuffleModeMutation,
   useTransferSpotifyPlaybackToCurrentDeviceMutation,
 } from "~/core/hooks";
+import type { ISpotifyPlayerState } from "~/core/model";
 
 import { PlayerButton } from "../PlayerButton";
-
-interface IPlayerStateChangeEvent {
-  duration: number;
-  paused: boolean;
-  position: number;
-  repeat_mode: 0 | 1;
-  shuffle: boolean;
-  track_window: {
-    current_track: Track;
-  };
-}
+import { TrackProgress } from "../TrackProgress";
 
 interface PlayerProps {
   deviceId: string;
@@ -44,24 +34,22 @@ export const Player = ({ deviceId, player }: PlayerProps) => {
     useToggleSpotifyShuffleModeMutation();
 
   const [albumImage, setAlbumImage] = useState<string>();
-  const [currentTrackName, setCurrentTrackName] = useState<string>();
   const [currentTrackArtists, setCurrentTrackArtists] = useState<string>();
+  const [currentTrackName, setCurrentTrackName] = useState<string>();
   const [isPaused, setIsPaused] = useState<boolean>(true);
   const [isRepeatMode, setIsRepeatMode] = useState<boolean>(false);
   const [isShuffleMode, setIsShuffleMode] = useState<boolean>(false);
 
   const onPlayerStateChanged = ({
-    duration,
     paused,
-    position,
     repeat_mode,
     shuffle,
     track_window: { current_track },
-  }: IPlayerStateChangeEvent) => {
+  }: ISpotifyPlayerState) => {
     const { album, artists, name } = current_track;
     setAlbumImage(album.images.at(0)?.url);
-    setCurrentTrackName(name);
     setCurrentTrackArtists(artists.map(({ name }) => name).join(" & "));
+    setCurrentTrackName(name);
     setIsPaused(paused);
     setIsRepeatMode(!!repeat_mode);
     setIsShuffleMode(shuffle);
@@ -105,8 +93,8 @@ export const Player = ({ deviceId, player }: PlayerProps) => {
       <Section>
         <div className="relative h-full w-full flex items-center px-2">
           <div className="flex items-center gap-6">
-            <div className="h-18 w-18 rounded-xl overflow-hidden">
-              <img src={albumImage} alt="Current track album" />
+            <div className="h-18 w-18 rounded-xl overflow-hidden bg-slate-700/60">
+              {albumImage && <img src={albumImage} alt="Current track album" />}
             </div>
             <div className="flex flex-col gap-1 font-semibold tracking-tight">
               <p>{currentTrackName}</p>
@@ -141,6 +129,7 @@ export const Player = ({ deviceId, player }: PlayerProps) => {
             </PlayerButton>
           </div>
           <div></div>
+          <TrackProgress player={player} />
         </div>
       </Section>
     </div>
