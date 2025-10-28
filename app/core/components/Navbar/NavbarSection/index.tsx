@@ -5,5 +5,5 @@ interface NavbarSectionProps {
 }
 
 export const NavbarSection = ({ children }: NavbarSectionProps) => (
-  <div className="flex items-center gap-4 px-4">{children}</div>
+  <div className="flex items-center gap-4">{children}</div>
 );
