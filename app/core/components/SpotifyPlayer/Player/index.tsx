@@ -17,6 +17,7 @@ import {
 import type { ISpotifyPlayerState } from "~/core/model";
 
 import { PlayerButton } from "../PlayerButton";
+import { PlayerVolume } from "../PlayerVolume";
 import { TrackProgress } from "../TrackProgress";
 
 interface PlayerProps {
@@ -91,7 +92,7 @@ export const Player = ({ deviceId, player }: PlayerProps) => {
   return (
     <div className="h-35 w-full">
       <Section>
-        <div className="relative h-full w-full flex items-center px-2">
+        <div className="relative h-full w-full flex items-center justify-between px-2">
           <div className="flex items-center gap-6">
             <div className="h-18 w-18 rounded-xl overflow-hidden bg-slate-700/60">
               {albumImage && <img src={albumImage} alt="Current track album" />}
@@ -128,7 +129,7 @@ export const Player = ({ deviceId, player }: PlayerProps) => {
               <Repeat size={20} />
             </PlayerButton>
           </div>
-          <div></div>
+          <PlayerVolume player={player} />
           <TrackProgress player={player} />
         </div>
       </Section>
