@@ -7,9 +7,9 @@ import {
   Scripts,
   ScrollRestoration,
 } from "react-router";
-
-import { queryClient } from "~core/api";
-import { authenticateSpotifyUser } from "~core/services";
+import { queryClient } from "~/core/api";
+import { Navbar } from "~/core/components";
+import { authenticateSpotifyUser } from "~/core/services";
 
 import type { Route } from "./+types/root";
 
@@ -43,6 +43,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
           <Links />
         </head>
         <body className="antialiased bg-neutral-100 dark:bg-slate-800/40 w-screen h-screen">
+          <Navbar />
           {children}
           <ScrollRestoration />
           <Scripts />

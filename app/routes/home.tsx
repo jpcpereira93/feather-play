@@ -1,5 +1,3 @@
-import { spotifyApi } from "~/core/api";
-
 export function meta() {
   return [
     { title: "Spotify Client" },
@@ -8,7 +6,5 @@ export function meta() {
 }
 
 export default function Home() {
-  console.log(spotifyApi.currentUser);
-
-  return <div />;
+  return <div></div>;
 }
