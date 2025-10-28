@@ -1,9 +1,9 @@
 import { useCallback } from "react";
 
-import { useGetCurrentSpotifyUserProfile } from "~/core/hooks";
+import { useGetCurrentSpotifyUserProfileQuery } from "~/core/hooks";
 
 export const Avatar = () => {
-  const { data } = useGetCurrentSpotifyUserProfile();
+  const { data } = useGetCurrentSpotifyUserProfileQuery();
 
   const getDisplayLetters = useCallback(() => {
     if (!data) {

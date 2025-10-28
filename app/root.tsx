@@ -9,7 +9,7 @@ import {
 } from "react-router";
 
 import { queryClient } from "~/core/api";
-import { Navbar, Player, Section, SideMenu } from "~/core/components";
+import { Navbar, Section, SideMenu, SpotifyPlayer } from "~/core/components";
 import { authenticateSpotifyUser } from "~/core/services";
 
 import type { Route } from "./+types/root";
@@ -30,7 +30,9 @@ export const links: Route.LinksFunction = () => [
 ];
 
 export async function clientLoader() {
-  await authenticateSpotifyUser();
+  const { accessToken } = await authenticateSpotifyUser();
+
+  return { spotifyAccessToken: accessToken.access_token };
 }
 
 export function Layout({ children }: { children: React.ReactNode }) {
@@ -51,7 +53,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
             </div>
             <Section>{children}</Section>
           </main>
-          <Player />
+          <SpotifyPlayer />
           <ScrollRestoration />
           <Scripts />
         </body>

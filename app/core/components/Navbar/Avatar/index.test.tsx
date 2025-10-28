@@ -6,7 +6,8 @@ const mockUseGetCurrentSpotifyUserProfile = vi.fn();
 
 vi.mock("~/core/hooks", async (importOriginal) => ({
   ...(await importOriginal()),
-  useGetCurrentSpotifyUserProfile: () => mockUseGetCurrentSpotifyUserProfile(),
+  useGetCurrentSpotifyUserProfileQuery: () =>
+    mockUseGetCurrentSpotifyUserProfile(),
 }));
 
 test("should display the user photo", () => {

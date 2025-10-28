@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 
 import { getCurrentSpotifyUserProfile } from "~core/services";
 
-export const useGetCurrentSpotifyUserProfile = () =>
+export const useGetCurrentSpotifyUserProfileQuery = () =>
   useQuery({
     queryKey: ["spotifyUserProfile"],
     queryFn: getCurrentSpotifyUserProfile,
