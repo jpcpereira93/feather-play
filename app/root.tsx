@@ -48,7 +48,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <body className="antialiased bg-neutral-100 dark:bg-slate-800/40 h-screen w-screen p-2 flex flex-col gap-2 overflow-hidden">
           <Navbar />
           <main className="flex flex-col h-full w-full gap-2 overflow-hidden">
-            <div className="flex gap-2 overflow-hidden">
+            <div className="flex h-full gap-2 overflow-hidden">
               <div className="w-1/3 xl:w-1/4">
                 <SideMenu />
               </div>
