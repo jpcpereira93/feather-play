@@ -1,7 +1,7 @@
 import type {
   Image,
   Page,
-  PlaylistedTrack,
+  SimplifiedTrack,
   Track,
 } from "@spotify/web-api-ts-sdk";
 import { Play } from "lucide-react";
@@ -17,16 +17,18 @@ import {
 
 interface SpotifyPlayableListProps {
   description: string;
+  hasAlbum?: boolean;
   images: Image[];
   name: string;
   owner: string;
   uri: string;
-  tracks: Page<PlaylistedTrack<Track>>;
+  tracks: Page<Track | SimplifiedTrack>;
   type: string;
 }
 
 export const SpotifyPlayableList = ({
   description,
+  hasAlbum,
   images,
   name,
   owner,
@@ -73,12 +75,20 @@ export const SpotifyPlayableList = ({
           </button>
         </div>
       </div>
-      <SpotifyPlayableListTable tracks={tracks} onPlayTrack={onPlayTrack} />
+      <SpotifyPlayableListTable
+        hasAlbum={hasAlbum}
+        tracks={tracks}
+        onPlayTrack={onPlayTrack}
+      />
     </div>
   );
 };
 
-export const SpotifyPlayableListSkeleton = () => (
+export const SpotifyPlayableListSkeleton = ({
+  hasAlbum,
+}: {
+  hasAlbum?: boolean;
+}) => (
   <div className="h-full w-full flex flex-col p-4 gap-6">
     <div className="flex h-40 w-full items-center">
       <div className="flex h-full w-4/5 gap-6">
@@ -103,6 +113,6 @@ export const SpotifyPlayableListSkeleton = () => (
         </div>
       </div>
     </div>
-    <SpotifyPlayableListTableSkeleton />
+    <SpotifyPlayableListTableSkeleton hasAlbum={hasAlbum} />
   </div>
 );

@@ -1,12 +1,17 @@
-import type { SimplifiedAlbum } from "@spotify/web-api-ts-sdk";
+import type {
+  Artist,
+  SimplifiedAlbum,
+  SimplifiedArtist,
+} from "@spotify/web-api-ts-sdk";
 import classNames from "classnames";
 import { AudioLines, Play } from "lucide-react";
 import { useState } from "react";
 
-import { msToMinAndSec } from "~/core/utils";
+import { getArtistsString, msToMinAndSec } from "~/core/utils";
 
 interface SpotifyPlayableListTableRowProps {
-  album: SimplifiedAlbum;
+  album?: SimplifiedAlbum;
+  artists: Artist[] | SimplifiedArtist[];
   duration: number; // in ms
   id: string;
   index: number;
@@ -18,6 +23,7 @@ interface SpotifyPlayableListTableRowProps {
 
 export const SpotifyPlayableListTableRow = ({
   album,
+  artists,
   duration,
   index,
   isCurrentPlayingTrack,
@@ -59,16 +65,20 @@ export const SpotifyPlayableListTableRow = ({
       <td>
         <div className="flex flex-col gap-1">
           <p className="font-semibold text-slate-300">{name}</p>
-          <p className="text-xs">{name}</p>
+          <p className="text-xs">{getArtistsString(artists)}</p>
         </div>
       </td>
-      <td className="font-semibold">{album.name}</td>
+      {album && <td className="font-semibold">{album.name}</td>}
       <td className="rounded-r-lg">{msToMinAndSec(duration)}</td>
     </tr>
   );
 };
 
-export const SpotifyPlayableListTableRowSkeleton = () => (
+export const SpotifyPlayableListTableRowSkeleton = ({
+  hasAlbum,
+}: {
+  hasAlbum?: boolean;
+}) => (
   <tr className="h-15 text-sm text-transparent tracking-tight">
     <td className="rounded-l-lg text-center">
       <span className="rounded-lg bg-slate-700">10</span>
@@ -76,16 +86,18 @@ export const SpotifyPlayableListTableRowSkeleton = () => (
     <td>
       <div className="flex flex-col gap-1">
         <p className="font-semibold">
-          <span className="rounded-lg bg-slate-700">Music name</span>
+          <span className="rounded-lg bg-slate-700">Music name 123</span>
         </p>
         <p className="text-xs">
           <span className="rounded-lg bg-slate-700">Artist name</span>
         </p>
       </div>
     </td>
-    <td className="font-semibold">
-      <span className="rounded-lg bg-slate-700">Album name</span>
-    </td>
+    {hasAlbum && (
+      <td className="font-semibold">
+        <span className="rounded-lg bg-slate-700">Album name Album name</span>
+      </td>
+    )}
     <td className="rounded-r-lg">
       <span className="rounded-lg bg-slate-700">3:00</span>
     </td>

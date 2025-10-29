@@ -1,7 +1,8 @@
 import type { Artist } from "@spotify/web-api-ts-sdk";
 import { useCallback } from "react";
+import { NavLink } from "react-router";
 
-import { getSpotifyItemImageUrl } from "~/core/utils";
+import { getArtistsString, getSpotifyItemImageUrl } from "~/core/utils";
 
 import {
   LibraryCard,
@@ -17,16 +18,7 @@ export default function Albums() {
 
   const getAlbumDescription = useCallback(
     (artists: Artist[], releaseDate: string) => {
-      let description = artists[0].name;
-
-      if (artists.length > 1) {
-        description += ` feat ${artists
-          .slice(1)
-          .map(({ name }) => name)
-          .join(",")}`;
-      }
-
-      return `${description}\n${releaseDate}`;
+      return `${getArtistsString(artists)}\n${releaseDate}`;
     },
     [],
   );
@@ -41,12 +33,14 @@ export default function Albums() {
         const { id, images, name, artists, release_date } = album;
 
         return (
-          <LibraryCard
-            img={getSpotifyItemImageUrl(images)}
-            key={id}
-            title={name}
-            subtitle={getAlbumDescription(artists, release_date)}
-          />
+          <NavLink key={id} to={`/albums/${id}`}>
+            <LibraryCard
+              img={getSpotifyItemImageUrl(images)}
+              key={id}
+              title={name}
+              subtitle={getAlbumDescription(artists, release_date)}
+            />
+          </NavLink>
         );
       })}
     </LibraryCarousel>

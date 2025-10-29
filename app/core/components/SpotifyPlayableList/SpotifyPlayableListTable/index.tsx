@@ -1,29 +1,32 @@
-import type { Page, PlaylistedTrack, Track } from "@spotify/web-api-ts-sdk";
+import type { Page, SimplifiedTrack, Track } from "@spotify/web-api-ts-sdk";
 
 import { useSpotifyPlayerContext } from "~/core/context";
 import { getPlaceholderArray } from "~/core/utils";
+
 import {
   SpotifyPlayableListTableRow,
   SpotifyPlayableListTableRowSkeleton,
 } from "./SpotifyPlayableListTableRow";
 
 interface SpotifyPlayableListTableProps {
-  tracks: Page<PlaylistedTrack<Track>>;
+  hasAlbum?: boolean;
+  tracks: Page<Track | SimplifiedTrack>;
   onPlayTrack: (uri: string) => void;
 }
 
-const SpotifyPlayableListTableHead = () => (
+const SpotifyPlayableListTableHead = ({ hasAlbum }: { hasAlbum?: boolean }) => (
   <thead className="text-sm sticky z-2 top-0 bg-slate-800 h-15">
     <tr>
       <th className="font-medium w-14 rounded-l-lg">#</th>
       <th className="font-medium text-left">Title</th>
-      <th className="font-medium text-left">Album</th>
+      {hasAlbum && <th className="font-medium text-left">Album</th>}
       <th className="font-medium text-left w-20 rounded-r-lg">Duration</th>
     </tr>
   </thead>
 );
 
 export const SpotifyPlayableListTable = ({
+  hasAlbum,
   tracks,
   onPlayTrack,
 }: SpotifyPlayableListTableProps) => {
@@ -32,14 +35,15 @@ export const SpotifyPlayableListTable = ({
   return (
     <div className="overflow-auto">
       <table className="w-full">
-        <SpotifyPlayableListTableHead />
+        <SpotifyPlayableListTableHead hasAlbum={hasAlbum} />
         <tbody>
-          {tracks.items.map(({ track }, index) => {
-            const { album, duration_ms, id, name, uri } = track;
+          {tracks.items.map((track, index) => {
+            const { artists, duration_ms, id, name, uri } = track;
 
             return (
               <SpotifyPlayableListTableRow
-                album={album}
+                album={(track as Track).album}
+                artists={artists}
                 duration={duration_ms}
                 id={id}
                 index={index}
@@ -57,12 +61,16 @@ export const SpotifyPlayableListTable = ({
   );
 };
 
-export const SpotifyPlayableListTableSkeleton = () => (
+export const SpotifyPlayableListTableSkeleton = ({
+  hasAlbum,
+}: {
+  hasAlbum?: boolean;
+}) => (
   <table className="w-full">
-    <SpotifyPlayableListTableHead />
+    <SpotifyPlayableListTableHead hasAlbum={hasAlbum} />
     <tbody>
       {getPlaceholderArray(10).map((value) => (
-        <SpotifyPlayableListTableRowSkeleton key={value} />
+        <SpotifyPlayableListTableRowSkeleton hasAlbum={hasAlbum} key={value} />
       ))}
     </tbody>
   </table>
