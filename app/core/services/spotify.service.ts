@@ -17,3 +17,6 @@ export const getCurrentSpotifyUserPlaylists = async () =>
 
 export const getCurrentSpotifyUserProfile = async () =>
   await spotifyApi.currentUser.profile();
+
+export const getSpotifyPlaylist = async (id: string) =>
+  await spotifyApi.playlists.getPlaylist(id);

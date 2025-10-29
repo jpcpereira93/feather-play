@@ -9,3 +9,6 @@ export const toggleSpotifyRepeatMode = async (isRepeatMode: boolean) =>
 
 export const toggleSpotifyShuffleMode = async (isShuffleMode: boolean) =>
   await spotifyApi.player.togglePlaybackShuffle(!isShuffleMode);
+
+export const playSpotifyItem = async (uri?: string, uris?: string[]) =>
+  await spotifyApi.player.startResumePlayback("", uri, uris);
