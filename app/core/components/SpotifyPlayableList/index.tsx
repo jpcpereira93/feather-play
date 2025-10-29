@@ -1,6 +1,7 @@
 import type {
   Image,
   Page,
+  SavedTrack,
   SimplifiedTrack,
   Track,
 } from "@spotify/web-api-ts-sdk";
@@ -22,7 +23,7 @@ interface SpotifyPlayableListProps {
   name: string;
   owner: string;
   uri: string;
-  tracks: Page<Track | SimplifiedTrack>;
+  tracks: Page<{ track: Track | SimplifiedTrack } | SavedTrack>;
   type: string;
 }
 

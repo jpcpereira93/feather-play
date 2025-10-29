@@ -14,7 +14,7 @@ import {
   useToggleSpotifyShuffleModeMutation,
   useTransferSpotifyPlaybackToCurrentDeviceMutation,
 } from "~/core/hooks";
-import type { ISpotifyPlayerState } from "~/core/model";
+import type { ISpotifyPlayerState } from "~/core/models";
 
 import { PlayerButton } from "../PlayerButton";
 import { PlayerVolume } from "../PlayerVolume";
