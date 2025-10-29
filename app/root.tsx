@@ -1,3 +1,4 @@
+import { QueryClientProvider } from "@tanstack/react-query";
 import {
   isRouteErrorResponse,
   Links,
@@ -6,6 +7,10 @@ import {
   Scripts,
   ScrollRestoration,
 } from "react-router";
+
+import { queryClient } from "~/core/api";
+import { Navbar, Section, SideMenu, SpotifyPlayer } from "~/core/components";
+import { authenticateSpotifyUser } from "~/core/services";
 
 import type { Route } from "./+types/root";
 
@@ -24,21 +29,41 @@ export const links: Route.LinksFunction = () => [
   },
 ];
 
+export async function clientLoader() {
+  const { accessToken } = await authenticateSpotifyUser();
+
+  return { spotifyAccessToken: accessToken.access_token };
+}
+
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
-      <head>
-        <meta charSet="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <Meta />
-        <Links />
-      </head>
-      <body>
-        {children}
-        <ScrollRestoration />
-        <Scripts />
-      </body>
-    </html>
+    <QueryClientProvider client={queryClient}>
+      <html lang="en">
+        <head>
+          <meta charSet="utf-8" />
+          <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+          />
+          <Meta />
+          <Links />
+        </head>
+        <body className="antialiased bg-neutral-100 dark:bg-slate-800/40 h-screen w-screen p-2 flex flex-col gap-2 overflow-hidden">
+          <Navbar />
+          <main className="flex flex-col h-full w-full gap-2 overflow-hidden">
+            <div className="flex h-full gap-2 overflow-hidden">
+              <div className="w-1/3 xl:w-1/4">
+                <SideMenu />
+              </div>
+              <Section>{children}</Section>
+            </div>
+            <SpotifyPlayer />
+          </main>
+          <ScrollRestoration />
+          <Scripts />
+        </body>
+      </html>
+    </QueryClientProvider>
   );
 }
 

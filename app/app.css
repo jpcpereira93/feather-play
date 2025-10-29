@@ -7,7 +7,7 @@
 
 html,
 body {
-  @apply bg-white dark:bg-gray-950;
+  scrollbar-color: var(--color-slate-700) transparent;
 
   @media (prefers-color-scheme: dark) {
     color-scheme: dark;

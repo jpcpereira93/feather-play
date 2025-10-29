@@ -1,0 +1,45 @@
+import { Heart, Library } from "lucide-react";
+
+import { Section } from "~/core/components/Section";
+import { useGetCurrentSpotifyUserPlaylistsQuery } from "~/core/hooks";
+import { getSpotifyItemImageUrl } from "~/core/utils";
+
+import { SideMenuTab } from "./SideMenuTab";
+
+export const SideMenu = () => {
+  const { data: userPlaylists } = useGetCurrentSpotifyUserPlaylistsQuery();
+
+  return (
+    <Section>
+      <div className="flex flex-col gap-3 h-full">
+        <ul className="flex flex-col gap-1">
+          <SideMenuTab to="/library">
+            <Library />
+            Your Library
+          </SideMenuTab>
+          <SideMenuTab to="/liked-songs">
+            <Heart />
+            Liked Songs
+          </SideMenuTab>
+        </ul>
+        <div className="px-4">
+          <span className="flex h-[2px] w-full bg-slate-700"></span>
+        </div>
+        {userPlaylists && (
+          <ul className="flex flex-col h-full gap-1 overflow-scroll">
+            {userPlaylists.items.map(({ id, images, name }) => (
+              <SideMenuTab key={id} to={name}>
+                <div className="h-8 w-8 rounded overflow-hidden">
+                  {images && images.length > 0 && (
+                    <img src={getSpotifyItemImageUrl(images)} alt={name} />
+                  )}
+                </div>
+                {name}
+              </SideMenuTab>
+            ))}
+          </ul>
+        )}
+      </div>
+    </Section>
+  );
+};
