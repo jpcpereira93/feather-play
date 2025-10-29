@@ -10,8 +10,8 @@ export const LibraryCard = ({ img, subtitle, title }: LibraryCardProps) => (
       {img.length > 0 && <img src={img} alt={title}></img>}
     </div>
     <div className="h-1/3 p-3 gap-2">
-      <h1 className="font-bold text-lg">{title}</h1>
-      <h2 className="w-full font-semibold text-sm text-slate-500 truncate overflow-hidden">
+      <h1 className="font-bold text-lg truncate overflow-hidden">{title}</h1>
+      <h2 className="w-full font-semibold text-sm text-slate-500 truncate overflow-hidden whitespace-pre-wrap">
         {subtitle}
       </h2>
     </div>

@@ -1,7 +1,10 @@
-import { spotifyApi } from "../api";
+import { spotifyApi } from "~/core/api";
 
 export const authenticateSpotifyUser = async () =>
   await spotifyApi.authenticate();
+
+export const getCurrentSpotifyUserAlbums = async () =>
+  await spotifyApi.currentUser.albums.savedAlbums();
 
 export const getCurrentSpotifyUserFollowedArtists = async () => {
   const { artists } = await spotifyApi.currentUser.followedArtists();
