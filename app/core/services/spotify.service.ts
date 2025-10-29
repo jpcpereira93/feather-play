@@ -5,3 +5,6 @@ export const authenticateSpotifyUser = async () =>
 
 export const getCurrentSpotifyUserProfile = async () =>
   await spotifyApi.currentUser.profile();
+
+export const getCurrentSpotifyUserPlaylists = async () =>
+  await spotifyApi.currentUser.playlists.playlists();

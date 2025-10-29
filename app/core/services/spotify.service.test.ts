@@ -2,6 +2,7 @@ import { spotifyApi } from "~core/api";
 
 import {
   authenticateSpotifyUser,
+  getCurrentSpotifyUserPlaylists,
   getCurrentSpotifyUserProfile,
 } from "./spotify.service";
 
@@ -25,6 +26,19 @@ test("should get the current user profile from the Spotify API", async () => {
     .mockResolvedValueOnce(mockRes);
 
   const res = await getCurrentSpotifyUserProfile();
+
+  expect(spy).toHaveBeenCalledOnce();
+  expect(res).toEqual(mockRes);
+});
+
+test("should get the current user playlists from the Spotify API", async () => {
+  const mockRes = { items: [] } as any;
+
+  const spy = vi
+    .spyOn(spotifyApi.currentUser.playlists, "playlists")
+    .mockResolvedValueOnce(mockRes);
+
+  const res = await getCurrentSpotifyUserPlaylists();
 
   expect(spy).toHaveBeenCalledOnce();
   expect(res).toEqual(mockRes);
