@@ -1,3 +1,5 @@
+import { redirect } from "react-router";
+
 export function meta() {
   return [
     { title: "Spotify Client" },
@@ -5,6 +7,10 @@ export function meta() {
   ];
 }
 
+export async function clientLoader() {
+  return redirect("/library");
+}
+
 export default function Home() {
-  return <div></div>;
+  return <></>;
 }

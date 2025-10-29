@@ -17,11 +17,11 @@ export const SideMenu = () => {
     <Section>
       <div className="flex flex-col gap-3 h-full">
         <ul className="flex flex-col gap-1">
-          <SideMenuTab active>
+          <SideMenuTab to="/library">
             <Library />
             Your Library
           </SideMenuTab>
-          <SideMenuTab>
+          <SideMenuTab to="/liked-songs">
             <Heart />
             Liked Songs
           </SideMenuTab>
@@ -32,7 +32,7 @@ export const SideMenu = () => {
         {userPlaylists && (
           <ul className="flex flex-col h-full gap-1 overflow-scroll">
             {userPlaylists.items.map(({ id, images, name }) => (
-              <SideMenuTab key={id}>
+              <SideMenuTab key={id} to={name}>
                 <div className="h-8 w-8 rounded overflow-hidden">
                   {images && images.length > 0 && (
                     <img src={getPlaylistImageUri(images)} alt={name} />
