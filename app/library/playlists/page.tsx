@@ -1,3 +1,4 @@
+import { NavLink } from "react-router";
 import { useGetCurrentSpotifyUserPlaylistsQuery } from "~/core/hooks";
 import { getSpotifyItemImageUrl } from "~/core/utils";
 
@@ -18,12 +19,13 @@ export default function Library() {
   return (
     <LibraryCarousel>
       {userPlaylists.items.map(({ description, id, images, name }) => (
-        <LibraryCard
-          key={id}
-          img={getSpotifyItemImageUrl(images)}
-          subtitle={description}
-          title={name}
-        />
+        <NavLink key={id} to={`/playlists/${id}`}>
+          <LibraryCard
+            img={getSpotifyItemImageUrl(images)}
+            subtitle={description}
+            title={name}
+          />
+        </NavLink>
       ))}
     </LibraryCarousel>
   );
