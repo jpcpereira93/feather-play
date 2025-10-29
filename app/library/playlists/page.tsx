@@ -1,13 +1,18 @@
 import { useGetCurrentSpotifyUserPlaylistsQuery } from "~/core/hooks";
 import { getSpotifyItemImageUrl } from "~/core/utils";
 
-import { LibraryCard, LibraryCarousel } from "~/library/components";
+import {
+  LibraryCard,
+  LibraryCarousel,
+  LibraryCarouselSkeleton,
+} from "~/library/components";
 
 export default function Library() {
-  const { data: userPlaylists } = useGetCurrentSpotifyUserPlaylistsQuery();
+  const { data: userPlaylists, isLoading: isLoadingPlaylists } =
+    useGetCurrentSpotifyUserPlaylistsQuery();
 
-  if (!userPlaylists) {
-    return null;
+  if (isLoadingPlaylists || !userPlaylists) {
+    return <LibraryCarouselSkeleton />;
   }
 
   return (
