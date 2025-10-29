@@ -47,13 +47,15 @@ export function Layout({ children }: { children: React.ReactNode }) {
         </head>
         <body className="antialiased bg-neutral-100 dark:bg-slate-800/40 h-screen w-screen p-2 flex flex-col gap-2 overflow-hidden">
           <Navbar />
-          <main className="flex h-full w-full gap-2">
-            <div className="h-full w-1/3 xl:w-1/4">
-              <SideMenu />
+          <main className="flex flex-col h-full w-full gap-2 overflow-hidden">
+            <div className="flex gap-2 overflow-hidden">
+              <div className="w-1/3 xl:w-1/4">
+                <SideMenu />
+              </div>
+              <Section>{children}</Section>
             </div>
-            <Section>{children}</Section>
+            <SpotifyPlayer />
           </main>
-          <SpotifyPlayer />
           <ScrollRestoration />
           <Scripts />
         </body>
