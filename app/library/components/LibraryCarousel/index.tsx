@@ -1,4 +1,7 @@
 import React, { type ReactNode, useMemo } from "react";
+
+import { getPlaceholderArray } from "~/core/utils";
+
 import { LibraryCardSkeleton } from "../LibraryCard";
 
 interface LibraryCarouselProps {
@@ -12,10 +15,7 @@ export const LibraryCarousel = ({ children }: LibraryCarouselProps) => (
 );
 
 export const LibraryCarouselSkeleton = React.memo(() => {
-  const placeholder = useMemo(
-    () => Array.from(Array(20), (_, index) => index + 1),
-    [],
-  );
+  const placeholder = useMemo(() => getPlaceholderArray(20), []);
 
   return (
     <LibraryCarousel>
