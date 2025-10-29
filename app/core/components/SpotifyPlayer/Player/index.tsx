@@ -8,6 +8,7 @@ import {
 } from "lucide-react";
 import { useEffect, useState } from "react";
 
+import { useSpotifyPlayerContext } from "~/core/context";
 import {
   useToggleSpotifyRepeatModeMutation,
   useToggleSpotifyShuffleModeMutation,
@@ -26,6 +27,8 @@ interface PlayerProps {
 }
 
 export const Player = ({ deviceId, player }: PlayerProps) => {
+  const { setCurrentTrackId, setIsPlaying } = useSpotifyPlayerContext();
+
   const { mutate: mutateTransferSpotifyPlayback } =
     useTransferSpotifyPlaybackToCurrentDeviceMutation(deviceId);
   const { mutate: mutateToggleSpotifyRepeatMode } =
@@ -46,7 +49,11 @@ export const Player = ({ deviceId, player }: PlayerProps) => {
     shuffle,
     track_window: { current_track },
   }: ISpotifyPlayerState) => {
-    const { album, artists, name } = current_track;
+    const { album, artists, id, name } = current_track;
+
+    setCurrentTrackId(id);
+    setIsPlaying(!paused);
+
     setAlbumImage(album.images.at(0)?.url);
     setCurrentTrackArtists(artists.map(({ name }) => name).join(" & "));
     setCurrentTrackName(name);

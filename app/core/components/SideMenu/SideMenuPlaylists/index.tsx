@@ -18,7 +18,7 @@ export const SideMenuPlaylists = () => {
   return (
     <ul className="flex flex-col h-full gap-1 overflow-scroll">
       {userPlaylists.items.map(({ id, images, name }) => (
-        <SideMenuTab key={id} to={name}>
+        <SideMenuTab key={id} to={`/playlists/${id}`}>
           <div className="h-8 w-8 rounded overflow-hidden">
             {images && images.length > 0 && (
               <img src={getSpotifyItemImageUrl(images)} alt={name} />
