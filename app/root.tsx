@@ -10,6 +10,7 @@ import {
 
 import { queryClient } from "~/core/api";
 import { Navbar, Section, SideMenu, SpotifyPlayer } from "~/core/components";
+import { SpotifyPlayerProvider } from "~/core/context";
 import { authenticateSpotifyUser } from "~/core/services";
 
 import type { Route } from "./+types/root";
@@ -49,16 +50,18 @@ export function Layout({ children }: { children: React.ReactNode }) {
           <Links />
         </head>
         <body className="antialiased bg-neutral-100 dark:bg-slate-800/40 h-screen w-screen p-2 flex flex-col gap-2 overflow-hidden">
-          <Navbar />
-          <main className="flex flex-col h-full w-full gap-2 overflow-hidden">
-            <div className="flex h-full gap-2 overflow-hidden">
-              <div className="w-1/3 xl:w-1/4">
-                <SideMenu />
+          <SpotifyPlayerProvider>
+            <Navbar />
+            <main className="flex flex-col h-full w-full gap-2 overflow-hidden">
+              <div className="flex h-full gap-2 overflow-hidden">
+                <div className="w-1/3 xl:w-1/4">
+                  <SideMenu />
+                </div>
+                <Section>{children}</Section>
               </div>
-              <Section>{children}</Section>
-            </div>
-            <SpotifyPlayer />
-          </main>
+              <SpotifyPlayer />
+            </main>
+          </SpotifyPlayerProvider>
           <ScrollRestoration />
           <Scripts />
         </body>
