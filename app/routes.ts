@@ -17,5 +17,6 @@ export default [
     ]),
   ]),
   route("liked-songs", "liked-songs/page.tsx"),
+  route("albums/:albumId", "album/page.tsx"),
   route("playlists/:playlistId", "playlist/page.tsx"),
 ] satisfies RouteConfig;

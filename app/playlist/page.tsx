@@ -14,13 +14,14 @@ export default function Playlist({ params }: Route.ComponentProps) {
     useGetSpotifyPlaylistQuery(playlistId);
 
   if (isLoadingPlaylist || !playlist) {
-    return <SpotifyPlayableListSkeleton />;
+    return <SpotifyPlayableListSkeleton hasAlbum />;
   }
 
   const { description, images, name, owner, tracks, type, uri } = playlist;
 
   return (
     <SpotifyPlayableList
+      hasAlbum
       description={description}
       images={images}
       name={name}
