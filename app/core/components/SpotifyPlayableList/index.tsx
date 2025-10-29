@@ -44,15 +44,17 @@ export const SpotifyPlayableList = ({
 
   return (
     <div className="h-full w-full flex flex-col p-4 gap-6">
-      <div className="flex h-40 w-full items-center">
+      <div className="flex h-40 w-full items-center justify-between">
         <div className="flex h-full w-4/5 gap-6">
           <div className="h-40 w-40 rounded-lg overflow-hidden">
             <img src={getImgSrc()} alt={name}></img>
           </div>
-          <div className="flex flex-col justify-between tracking-tight">
+          <div className="flex flex-col justify-between tracking-tight overflow-hidden">
             <h2 className="capitalize font-semibold">{type}</h2>
-            <div className="flex flex-col gap-1">
-              <h1 className="text-7xl font-black text-slate-300">{name}</h1>
+            <div className="flex flex-col gap-1 w-full">
+              <h1 className="text-7xl font-black text-slate-300 truncate overflow-hidden">
+                {name}
+              </h1>
               <p className="text-sm">{description}</p>
             </div>
             <p className="flex items-center gap-1 text-sm">
