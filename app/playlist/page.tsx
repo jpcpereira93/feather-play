@@ -1,4 +1,8 @@
-import { SpotifyPlayableList } from "~/core/components";
+import {
+  SpotifyPlayableList,
+  SpotifyPlayableListSkeleton,
+} from "~/core/components";
+
 import type { Route } from "./+types/page";
 
 import { useGetSpotifyPlaylistQuery } from "./hooks";
@@ -6,13 +10,14 @@ import { useGetSpotifyPlaylistQuery } from "./hooks";
 export default function Playlist({ params }: Route.ComponentProps) {
   const { playlistId } = params;
 
-  const { data } = useGetSpotifyPlaylistQuery(playlistId);
+  const { data: playlist, isLoading: isLoadingPlaylist } =
+    useGetSpotifyPlaylistQuery(playlistId);
 
-  if (!data) {
-    return null;
+  if (isLoadingPlaylist || !playlist) {
+    return <SpotifyPlayableListSkeleton />;
   }
 
-  const { description, images, name, owner, tracks, type, uri } = data;
+  const { description, images, name, owner, tracks, type, uri } = playlist;
 
   return (
     <SpotifyPlayableList

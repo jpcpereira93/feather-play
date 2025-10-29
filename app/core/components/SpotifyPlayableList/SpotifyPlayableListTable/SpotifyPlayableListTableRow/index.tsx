@@ -5,7 +5,7 @@ import { useState } from "react";
 
 import { msToMinAndSec } from "~/core/utils";
 
-interface SpotifyPlayableListItemProps {
+interface SpotifyPlayableListTableRowProps {
   album: SimplifiedAlbum;
   duration: number; // in ms
   id: string;
@@ -16,7 +16,7 @@ interface SpotifyPlayableListItemProps {
   uri: string;
 }
 
-export const SpotifyPlayableListItem = ({
+export const SpotifyPlayableListTableRow = ({
   album,
   duration,
   index,
@@ -24,7 +24,7 @@ export const SpotifyPlayableListItem = ({
   name,
   onPlay,
   uri,
-}: SpotifyPlayableListItemProps) => {
+}: SpotifyPlayableListTableRowProps) => {
   const [isHovering, setIsHovering] = useState<boolean>(false);
 
   const onDoubleClick = () => onPlay(uri);
@@ -67,3 +67,27 @@ export const SpotifyPlayableListItem = ({
     </tr>
   );
 };
+
+export const SpotifyPlayableListTableRowSkeleton = () => (
+  <tr className="h-15 text-sm text-transparent tracking-tight">
+    <td className="rounded-l-lg text-center">
+      <span className="rounded-lg bg-slate-700">10</span>
+    </td>
+    <td>
+      <div className="flex flex-col gap-1">
+        <p className="font-semibold">
+          <span className="rounded-lg bg-slate-700">Music name</span>
+        </p>
+        <p className="text-xs">
+          <span className="rounded-lg bg-slate-700">Artist name</span>
+        </p>
+      </div>
+    </td>
+    <td className="font-semibold">
+      <span className="rounded-lg bg-slate-700">Album name</span>
+    </td>
+    <td className="rounded-r-lg">
+      <span className="rounded-lg bg-slate-700">3:00</span>
+    </td>
+  </tr>
+);

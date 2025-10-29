@@ -7,11 +7,13 @@ import type {
 import { Play } from "lucide-react";
 import { useCallback } from "react";
 
-import { useSpotifyPlayerContext } from "~/core/context";
 import { usePlaySpotifyItem } from "~/core/hooks";
 import { getSpotifyItemImageUrl } from "~/core/utils";
 
-import { SpotifyPlayableListItem } from "./SpotifyPlayableListItem";
+import {
+  SpotifyPlayableListTable,
+  SpotifyPlayableListTableSkeleton,
+} from "./SpotifyPlayableListTable";
 
 interface SpotifyPlayableListProps {
   description: string;
@@ -32,8 +34,6 @@ export const SpotifyPlayableList = ({
   tracks,
   type,
 }: SpotifyPlayableListProps) => {
-  const { currentTrackId, isPlaying } = useSpotifyPlayerContext();
-
   const { mutate: mutatePlaySpotifyItem } = usePlaySpotifyItem();
 
   const getImgSrc = useCallback(() => getSpotifyItemImageUrl(images), [images]);
@@ -49,9 +49,9 @@ export const SpotifyPlayableList = ({
           <div className="h-40 w-40 rounded-lg overflow-hidden">
             <img src={getImgSrc()} alt={name}></img>
           </div>
-          <div className="flex flex-col justify-between p-2 tracking-tight">
+          <div className="flex flex-col justify-between tracking-tight">
             <h2 className="capitalize font-semibold">{type}</h2>
-            <div className="gap-2">
+            <div className="flex flex-col gap-1">
               <h1 className="text-7xl font-black text-slate-300">{name}</h1>
               <p className="text-sm">{description}</p>
             </div>
@@ -71,39 +71,36 @@ export const SpotifyPlayableList = ({
           </button>
         </div>
       </div>
-      <div className="overflow-auto">
-        <table className="w-full">
-          <thead className="text-sm sticky z-2 top-0 bg-slate-800 h-15">
-            <tr>
-              <th className="font-medium w-14 rounded-l-lg">#</th>
-              <th className="font-medium text-left">Title</th>
-              <th className="font-medium text-left">Album</th>
-              <th className="font-medium text-left w-20 rounded-r-lg">
-                Duration
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            {tracks.items.map(({ track }, index) => {
-              const { album, duration_ms, id, name, uri } = track;
-
-              return (
-                <SpotifyPlayableListItem
-                  album={album}
-                  duration={duration_ms}
-                  id={id}
-                  index={index}
-                  isCurrentPlayingTrack={id === currentTrackId && isPlaying}
-                  key={id}
-                  name={name}
-                  onPlay={onPlayTrack}
-                  uri={uri}
-                />
-              );
-            })}
-          </tbody>
-        </table>
-      </div>
+      <SpotifyPlayableListTable tracks={tracks} onPlayTrack={onPlayTrack} />
     </div>
   );
 };
+
+export const SpotifyPlayableListSkeleton = () => (
+  <div className="h-full w-full flex flex-col p-4 gap-6">
+    <div className="flex h-40 w-full items-center">
+      <div className="flex h-full w-4/5 gap-6">
+        <div className="h-40 w-40 rounded-lg bg-slate-700"></div>
+        <div className="flex flex-col justify-between tracking-tight">
+          <h2 className="font-semibold text-transparent bg-slate-700 rounded-lg">
+            Placeholder
+          </h2>
+          <div className="flex flex-col gap-1">
+            <h1 className="text-7xl font-black text-transparent bg-slate-700 rounded-lg">
+              Track name
+            </h1>
+            <p className="text-sm text-transparent bg-slate-700 rounded-lg">
+              Placeholder description
+            </p>
+          </div>
+          <p className="flex items-center gap-1 text-sm">
+            <span className="font-semibold text-transparent bg-slate-700 rounded-lg">
+              Owner Name • xx tracks
+            </span>
+          </p>
+        </div>
+      </div>
+    </div>
+    <SpotifyPlayableListTableSkeleton />
+  </div>
+);
