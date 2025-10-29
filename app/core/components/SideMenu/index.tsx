@@ -1,17 +1,13 @@
-import type { Image } from "@spotify/web-api-ts-sdk";
 import { Heart, Library } from "lucide-react";
 
 import { Section } from "~/core/components/Section";
 import { useGetCurrentSpotifyUserPlaylistsQuery } from "~/core/hooks";
+import { getSpotifyItemImageUrl } from "~/core/utils";
 
 import { SideMenuTab } from "./SideMenuTab";
 
 export const SideMenu = () => {
   const { data: userPlaylists } = useGetCurrentSpotifyUserPlaylistsQuery();
-
-  const getPlaylistImageUri = (images: Image[]) => {
-    return images[0].url;
-  };
 
   return (
     <Section>
@@ -35,7 +31,7 @@ export const SideMenu = () => {
               <SideMenuTab key={id} to={name}>
                 <div className="h-8 w-8 rounded overflow-hidden">
                   {images && images.length > 0 && (
-                    <img src={getPlaylistImageUri(images)} alt={name} />
+                    <img src={getSpotifyItemImageUrl(images)} alt={name} />
                   )}
                 </div>
                 {name}
