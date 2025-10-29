@@ -3,12 +3,17 @@ import { useCallback } from "react";
 
 import { getSpotifyItemImageUrl } from "~/core/utils";
 
-import { LibraryCard, LibraryCarousel } from "~/library/components";
+import {
+  LibraryCard,
+  LibraryCarousel,
+  LibraryCarouselSkeleton,
+} from "~/library/components";
 
 import { useGetCurrentSpotifyUserAlbumsQuery } from "./hooks";
 
 export default function Albums() {
-  const { data: albums } = useGetCurrentSpotifyUserAlbumsQuery();
+  const { data: albums, isLoading: isLoadingAlbums } =
+    useGetCurrentSpotifyUserAlbumsQuery();
 
   const getAlbumDescription = useCallback(
     (artists: Artist[], releaseDate: string) => {
@@ -26,8 +31,8 @@ export default function Albums() {
     [],
   );
 
-  if (!albums) {
-    return null;
+  if (isLoadingAlbums || !albums) {
+    return <LibraryCarouselSkeleton />;
   }
 
   return (

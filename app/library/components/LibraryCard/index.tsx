@@ -4,6 +4,10 @@ interface LibraryCardProps {
   title: string;
 }
 
+export const LibraryCardSkeleton = () => (
+  <article className="flex flex-col h-80 w-full bg-slate-700/60 rounded-lg"></article>
+);
+
 export const LibraryCard = ({ img, subtitle, title }: LibraryCardProps) => (
   <article className="flex flex-col h-80 w-full overflow-hidden bg-slate-700/60 rounded-lg tracking-tight hover:cursor-pointer hover:bg-slate-600">
     <div className="h-2/3 overflow-hidden">
