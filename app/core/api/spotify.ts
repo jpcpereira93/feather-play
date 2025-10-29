@@ -13,6 +13,8 @@ const scopes: string[] = [
   ...Scopes.userPlaybackRead,
   ...Scopes.userPlayback,
   ...Scopes.userPlaybackModify,
+  ...Scopes.userFollow,
+  ...Scopes.userFollowRead,
 ];
 
 const auth = new AuthorizationCodeWithPKCEStrategy(
