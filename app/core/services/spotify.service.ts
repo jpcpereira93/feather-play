@@ -3,20 +3,23 @@ import { spotifyApi } from "~/core/api";
 export const authenticateSpotifyUser = async () =>
   await spotifyApi.authenticate();
 
-export const getSpotifyAlbum = async (id: string) =>
-  await spotifyApi.albums.get(id);
-
-export const getSpotifyPlaylist = async (id: string) => {
-  const playlist = await spotifyApi.playlists.getPlaylist(id);
+export const getSpotifyAlbum = async (id: string) => {
+  const album = await spotifyApi.albums.get(id);
 
   return {
-    ...playlist,
+    ...album,
     tracks: {
-      ...playlist.tracks,
-      items: playlist.tracks.items.map(({ track }) => track),
+      ...album.tracks,
+      items: album.tracks.items.map((track) => ({ track })),
     },
   };
 };
+
+export const getCurrentSpotifyUserLikedSongs = async () =>
+  await spotifyApi.currentUser.tracks.savedTracks();
+
+export const getSpotifyPlaylist = async (id: string) =>
+  await spotifyApi.playlists.getPlaylist(id);
 
 export const getCurrentSpotifyUserAlbums = async () =>
   await spotifyApi.currentUser.albums.savedAlbums();

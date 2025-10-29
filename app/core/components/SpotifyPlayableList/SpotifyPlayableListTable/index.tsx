@@ -1,4 +1,9 @@
-import type { Page, SimplifiedTrack, Track } from "@spotify/web-api-ts-sdk";
+import type {
+  Page,
+  SavedTrack,
+  SimplifiedTrack,
+  Track,
+} from "@spotify/web-api-ts-sdk";
 
 import { useSpotifyPlayerContext } from "~/core/context";
 import { getPlaceholderArray } from "~/core/utils";
@@ -10,7 +15,7 @@ import {
 
 interface SpotifyPlayableListTableProps {
   hasAlbum?: boolean;
-  tracks: Page<Track | SimplifiedTrack>;
+  tracks: Page<{ track: Track | SimplifiedTrack } | SavedTrack>;
   onPlayTrack: (uri: string) => void;
 }
 
@@ -37,7 +42,7 @@ export const SpotifyPlayableListTable = ({
       <table className="w-full">
         <SpotifyPlayableListTableHead hasAlbum={hasAlbum} />
         <tbody>
-          {tracks.items.map((track, index) => {
+          {tracks.items.map(({ track }, index) => {
             const { artists, duration_ms, id, name, uri } = track;
 
             return (

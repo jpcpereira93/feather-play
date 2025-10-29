@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-import type { ISpotifyPlayerState } from "~/core/model";
+import type { ISpotifyPlayerState } from "~/core/models";
 
 interface TrackProgressProps {
   // biome-ignore lint/suspicious/noExplicitAny: Spotify Player instances doesn't have types.
