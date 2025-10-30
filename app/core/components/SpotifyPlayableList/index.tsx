@@ -8,7 +8,7 @@ import type {
 import { Play } from "lucide-react";
 import { useCallback } from "react";
 
-import { usePlaySpotifyItem } from "~/core/hooks";
+import { usePlaySpotifyItemMutation } from "~/core/hooks";
 import { getSpotifyItemImageUrl } from "~/core/utils";
 
 import {
@@ -37,7 +37,7 @@ export const SpotifyPlayableList = ({
   tracks,
   type,
 }: SpotifyPlayableListProps) => {
-  const { mutate: mutatePlaySpotifyItem } = usePlaySpotifyItem();
+  const { mutate: mutatePlaySpotifyItem } = usePlaySpotifyItemMutation();
 
   const getImgSrc = useCallback(() => getSpotifyItemImageUrl(images), [images]);
 

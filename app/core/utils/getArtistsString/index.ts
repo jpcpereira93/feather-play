@@ -1,6 +1,6 @@
-import type { Artist } from "@spotify/web-api-ts-sdk";
+import type { Artist, SimplifiedArtist } from "@spotify/web-api-ts-sdk";
 
-export const getArtistsString = (artists: Artist[]) => {
+export const getArtistsString = (artists: Artist[] | SimplifiedArtist[]) => {
   let res = artists[0].name;
 
   if (artists.length > 1) {
