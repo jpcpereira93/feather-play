@@ -4,6 +4,7 @@ import type {
   SimplifiedTrack,
   Track,
 } from "@spotify/web-api-ts-sdk";
+import { useTranslation } from "react-i18next";
 
 import { useSpotifyPlayerContext } from "~/core/context";
 import { getPlaceholderArray } from "~/core/utils";
@@ -13,28 +14,45 @@ import {
   SpotifyPlayableListTableRowSkeleton,
 } from "./SpotifyPlayableListTableRow";
 
-interface SpotifyPlayableListTableProps {
+interface SpotifyPlayableListTableBaseProps {
   hasAlbum?: boolean;
+}
+
+interface SpotifyPlayableListTableProps {
   tracks: Page<{ track: Track | SimplifiedTrack } | SavedTrack>;
   onPlayTrack: (uri: string) => void;
 }
 
-const SpotifyPlayableListTableHead = ({ hasAlbum }: { hasAlbum?: boolean }) => (
-  <thead className="text-sm sticky z-2 top-0 bg-dark-700 h-18 tracking-normal">
-    <tr>
-      <th className="font-medium w-16 rounded-l-lg">#</th>
-      <th className="font-medium text-left">Title</th>
-      {hasAlbum && <th className="font-medium text-left">Album</th>}
-      <th className="font-medium text-left w-22 rounded-r-lg">Duration</th>
-    </tr>
-  </thead>
-);
+const SpotifyPlayableListTableHead = ({
+  hasAlbum,
+}: SpotifyPlayableListTableBaseProps) => {
+  const { t } = useTranslation();
+
+  return (
+    <thead className="text-sm sticky z-2 top-0 bg-dark-700 h-18 tracking-normal">
+      <tr>
+        <th className="font-medium w-16 rounded-l-lg">#</th>
+        <th className="font-medium text-left">
+          {t("playable_list.table.header.columns.title")}
+        </th>
+        {hasAlbum && (
+          <th className="font-medium text-left">
+            {t("playable_list.table.header.columns.album")}
+          </th>
+        )}
+        <th className="font-medium text-left w-22 rounded-r-lg">
+          {t("playable_list.table.header.columns.duration")}
+        </th>
+      </tr>
+    </thead>
+  );
+};
 
 export const SpotifyPlayableListTable = ({
   hasAlbum,
   tracks,
   onPlayTrack,
-}: SpotifyPlayableListTableProps) => {
+}: SpotifyPlayableListTableProps & SpotifyPlayableListTableBaseProps) => {
   const { currentTrackId, isPlaying } = useSpotifyPlayerContext();
 
   return (
@@ -68,9 +86,7 @@ export const SpotifyPlayableListTable = ({
 
 export const SpotifyPlayableListTableSkeleton = ({
   hasAlbum,
-}: {
-  hasAlbum?: boolean;
-}) => (
+}: SpotifyPlayableListTableBaseProps) => (
   <table className="w-full">
     <SpotifyPlayableListTableHead hasAlbum={hasAlbum} />
     <tbody>

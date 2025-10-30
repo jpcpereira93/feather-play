@@ -16,6 +16,7 @@ import { authenticateSpotifyUser } from "~/core/services";
 import type { Route } from "./+types/root";
 
 import "./app.css";
+import "./i18n";
 
 export const links: Route.LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -54,16 +55,8 @@ export function Layout({ children }: { children: React.ReactNode }) {
 "
         >
           <SpotifyPlayerProvider>
-            <Navbar />
-            <main className="flex flex-col h-full w-full gap-2 overflow-hidden">
-              <div className="flex h-full gap-2 overflow-hidden">
-                <div className="w-1/3 xl:w-1/4">
-                  <SideMenu />
-                </div>
-                <Box>{children}</Box>
-              </div>
-              <SpotifyPlayer />
-            </main>
+            {children}
+            <SpotifyPlayer />
           </SpotifyPlayerProvider>
           <ScrollRestoration />
           <Scripts />
@@ -74,7 +67,21 @@ export function Layout({ children }: { children: React.ReactNode }) {
 }
 
 export default function App() {
-  return <Outlet />;
+  return (
+    <>
+      <Navbar />
+      <main className="flex flex-col h-full w-full gap-2 overflow-hidden">
+        <div className="flex h-full gap-2 overflow-hidden">
+          <div className="w-1/3 xl:w-1/4">
+            <SideMenu />
+          </div>
+          <Box>
+            <Outlet />
+          </Box>
+        </div>
+      </main>
+    </>
+  );
 }
 
 export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {

@@ -1,0 +1,47 @@
+{
+  "library": {
+    "tabs": {
+      "albums": "Albums",
+      "artists": "Artists",
+      "playlists": "Playlists"
+    }
+  },
+  "liked_songs": {
+    "title": "Liked Songs"
+  },
+  "playable_list": {
+    "header": {
+      "list_type": {
+        "album": "Album",
+        "playlist": "Playlist"
+      },
+      "tracks": "{{tracks}} tracks"
+    },
+    "table": {
+      "header": {
+        "columns": {
+          "album": "Album",
+          "duration": "Duration",
+          "title": "Title"
+        }
+      }
+    }
+  },
+  "profile": {
+    "menu": {
+      "items": {
+        "account": "Account",
+        "logout": "Logout"
+      }
+    }
+  },
+  "search": {
+    "placeholder": "What do you want to listen to?"
+  },
+  "side_menu": {
+    "tabs": {
+      "library": "Your Library",
+      "liked_songs": "Liked Songs"
+    }
+  }
+}

@@ -1,12 +1,14 @@
+import { useTranslation } from "react-i18next";
 import {
   SpotifyPlayableList,
   SpotifyPlayableListSkeleton,
 } from "~/core/components";
 import { useGetCurrentSpotifyUserProfileQuery } from "~/core/hooks";
-
 import { useGetCurrentSpotifyUserLikedSongsQuery } from "./hooks";
 
 export default function LikedSongs() {
+  const { t } = useTranslation();
+
   const { data: likedSongs, isLoading: isLoadingLikedSongs } =
     useGetCurrentSpotifyUserLikedSongsQuery();
   const { data: userProfile, isLoading: isLoadingUserProfile } =
@@ -33,7 +35,7 @@ export default function LikedSongs() {
         },
       ]}
       uri={`${userProfile.uri}:collection`}
-      name="Liked Songs"
+      name={t("liked_songs.title")}
       owner={userProfile.display_name}
       tracks={likedSongs}
       type="playlist"

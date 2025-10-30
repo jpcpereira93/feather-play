@@ -1,5 +1,6 @@
 import { Search, X } from "lucide-react";
 import { type ChangeEvent, useEffect, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 import {
   usePlaySpotifyItemMutation,
@@ -14,6 +15,8 @@ import {
 import { SearchResult } from "./SearchResult";
 
 export const SearchBar = () => {
+  const { t } = useTranslation();
+
   const inputRef = useRef<HTMLInputElement>(null);
 
   const [searchTerm, setSearchTerm] = useState<string | undefined>();
@@ -67,7 +70,7 @@ export const SearchBar = () => {
         onBlur={onBlur}
         onChange={onChange}
         onFocus={onFocus}
-        placeholder="What do you want to listen to?"
+        placeholder={t("search.placeholder")}
         ref={inputRef}
         type="text"
       />

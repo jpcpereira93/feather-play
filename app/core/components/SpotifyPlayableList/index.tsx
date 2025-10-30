@@ -7,6 +7,7 @@ import type {
 } from "@spotify/web-api-ts-sdk";
 import { Play } from "lucide-react";
 import { useCallback, useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 import { usePlaySpotifyItemMutation } from "~/core/hooks";
 import { getSpotifyItemImageUrl } from "~/core/utils";
@@ -37,6 +38,8 @@ export const SpotifyPlayableList = ({
   tracks,
   type,
 }: SpotifyPlayableListProps) => {
+  const { t } = useTranslation();
+
   const { mutate: mutatePlaySpotifyItem } = usePlaySpotifyItemMutation();
 
   const [backgroundColor, setBackgroundColor] = useState<string>();
@@ -80,7 +83,9 @@ export const SpotifyPlayableList = ({
               <img src={getImgSrc()} alt={name}></img>
             </div>
             <div className="flex flex-col justify-end gap-4 py-1 overflow-hidden">
-              <h2 className="capitalize font-semibold">{type}</h2>
+              <h2 className="font-semibold">
+                {t(`playable_list.header.list_type.${type}`)}
+              </h2>
               <div className="flex flex-col">
                 <h1 className="text-7xl font-black text-dark-300 pb-3 truncate overflow-hidden">
                   {name}
@@ -91,7 +96,9 @@ export const SpotifyPlayableList = ({
               </div>
               <p className="flex items-center gap-1 text-sm">
                 <span className="font-semibold text-dark-300">{owner}</span>•
-                <span>{tracks.total} tracks</span>
+                <span>
+                  {t("playable_list.header.tracks", { tracks: tracks.total })}
+                </span>
               </p>
             </div>
           </div>
