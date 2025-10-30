@@ -1,24 +1,33 @@
 import { fireEvent, render, screen } from "@testing-library/react";
+
 import { SearchBar } from ".";
 
-test("should not call the onChange callback before the debounce delay", () => {
-  const onValueChange = vi.fn();
+const mockSearchQueryRefetch = vi.fn();
 
-  render(<SearchBar onValueChange={onValueChange} />);
+vi.mock("~/core/hooks", async (importOriginal) => ({
+  ...(await importOriginal()),
+  usePlaySpotifyItemMutation: () => ({ mutate: vi.fn() }),
+  useSpotifySearchQuery: () => ({
+    refetch: () => mockSearchQueryRefetch(),
+  }),
+}));
+
+test("should not call the refetch before the debounce delay", () => {
+  const { rerender } = render(<SearchBar />);
 
   const input = screen.getByRole("textbox");
 
   fireEvent.change(input, { target: { value: "test" } });
 
-  expect(onValueChange).toBeCalledTimes(0);
+  rerender(<SearchBar />);
+
+  expect(mockSearchQueryRefetch).toBeCalledTimes(0);
 });
 
-test("should not call the onChange callback before the debounce delay", async () => {
+test("should call the refetch after the debounce delay", async () => {
   vi.useFakeTimers();
 
-  const onValueChange = vi.fn();
-
-  render(<SearchBar onValueChange={onValueChange} />);
+  const { rerender } = render(<SearchBar />);
 
   const input = screen.getByRole("textbox");
 
@@ -27,5 +36,7 @@ test("should not call the onChange callback before the debounce delay", async ()
 
   await vi.advanceTimersByTimeAsync(400);
 
-  expect(onValueChange).toBeCalledWith("test1");
+  rerender(<SearchBar />);
+
+  expect(mockSearchQueryRefetch).toBeCalledTimes(1);
 });

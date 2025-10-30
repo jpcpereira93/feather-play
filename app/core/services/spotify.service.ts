@@ -35,3 +35,6 @@ export const getCurrentSpotifyUserPlaylists = async () =>
 
 export const getCurrentSpotifyUserProfile = async () =>
   await spotifyApi.currentUser.profile();
+
+export const searchSpotify = async (searchTerm: string) =>
+  await spotifyApi.search(searchTerm, ["track"]);

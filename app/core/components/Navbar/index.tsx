@@ -45,9 +45,6 @@ export const Navbar = () => {
 
   const onProfileClick = () => console.log("profile click");
 
-  const onSearchBarValueChange = (searchValue: string) =>
-    console.log(searchValue);
-
   return (
     <nav className="w-full flex items-center justify-between py-2">
       <NavbarSection>
@@ -70,7 +67,7 @@ export const Navbar = () => {
         <IconButton ariaLabel="Home" onClick={onHomeClick}>
           <Home />
         </IconButton>
-        <SearchBar onValueChange={onSearchBarValueChange} />
+        <SearchBar />
       </NavbarSection>
       <IconButton ariaLabel="Profile" onClick={onProfileClick}>
         <Avatar />
