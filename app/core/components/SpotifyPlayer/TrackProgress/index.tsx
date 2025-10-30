@@ -27,7 +27,7 @@ export const TrackProgress = ({ player }: TrackProgressProps) => {
   }, [player]);
 
   return (
-    <span className="absolute -left-2 -right-2 -bottom-2 h-2 bg-dark-600">
+    <span className="absolute left-0 right-0 bottom-0 h-2 bg-dark-600">
       <span
         className="absolute h-full bg-dark-500"
         style={{
