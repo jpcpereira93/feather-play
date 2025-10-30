@@ -49,7 +49,10 @@ export function Layout({ children }: { children: React.ReactNode }) {
           <Meta />
           <Links />
         </head>
-        <body className="antialiased bg-neutral-100 dark:bg-dark-800 dark:text-dark-400 h-screen w-screen p-2 flex flex-col gap-2 overflow-hidden tracking-tight">
+        <body
+          className="antialiased bg-neutral-100 dark:bg-dark-800 dark:text-dark-400 h-screen w-screen p-2 flex flex-col gap-2 overflow-hidden tracking-tight select-none
+"
+        >
           <SpotifyPlayerProvider>
             <Navbar />
             <main className="flex flex-col h-full w-full gap-2 overflow-hidden">
