@@ -59,7 +59,9 @@ export const SpotifyPlayableList = ({
         context.drawImage(imgObj, 0, 0, 1, 1);
         const i = context.getImageData(0, 0, 1, 1).data;
 
-        const rgba = `rgba(${i[0]},${i[1]},${i[2]},${i[3]})`;
+        const rgba = `rgba(${i[0]},${i[1]},${i[2]},0.5)`;
+
+        console.log(rgba);
 
         setBackgroundColor(rgba);
       }
