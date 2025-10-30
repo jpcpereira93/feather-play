@@ -61,33 +61,33 @@ export const SpotifyPlayableList = ({
 
         const rgba = `rgba(${i[0]},${i[1]},${i[2]},0.5)`;
 
-        console.log(rgba);
-
         setBackgroundColor(rgba);
       }
     };
   }, [getImgSrc]);
 
   return (
-    <div className="h-full w-full flex flex-col gap-6">
+    <div className="h-full w-full flex flex-col">
       <div
-        className="flex h-50 w-full p-4 box-border"
+        className="flex pt-4 px-4 box-border"
         style={{
           background: `linear-gradient(180deg, ${backgroundColor}, transparent)`,
         }}
       >
         <div className="flex h-full w-full items-center justify-between">
-          <div className="flex h-full w-4/5 gap-6">
-            <div className="h-40 w-40 rounded-lg overflow-hidden">
+          <div className="h-full w-full grid grid-cols-[200px_1fr] gap-6">
+            <div className="rounded-lg overflow-hidden">
               <img src={getImgSrc()} alt={name}></img>
             </div>
-            <div className="flex flex-col justify-between  overflow-hidden">
+            <div className="flex flex-col justify-end gap-4 py-1 overflow-hidden">
               <h2 className="capitalize font-semibold">{type}</h2>
-              <div className="flex flex-col gap-1 w-full">
-                <h1 className="text-7xl font-black text-dark-300 truncate overflow-hidden">
+              <div className="flex flex-col">
+                <h1 className="text-7xl font-black text-dark-300 pb-3 truncate overflow-hidden">
                   {name}
                 </h1>
-                <p className="text-sm">{description}</p>
+                <p className="text-sm -mt-1 truncate overflow-hidden">
+                  {description}
+                </p>
               </div>
               <p className="flex items-center gap-1 text-sm">
                 <span className="font-semibold text-dark-300">{owner}</span>•
@@ -95,7 +95,7 @@ export const SpotifyPlayableList = ({
               </p>
             </div>
           </div>
-          <div className="flex h-full items-center justify-center">
+          <div className="flex h-full w-50 items-center justify-center py-1">
             <button
               className="bg-dark-400 text-dark-600 rounded-full p-6 hover:cursor-pointer hover:bg-dark-300"
               onClick={onPlayClick}
@@ -120,27 +120,28 @@ export const SpotifyPlayableListSkeleton = ({
 }: {
   hasAlbum?: boolean;
 }) => (
-  <div className="h-full w-full flex flex-col pt-4 gap-6">
-    <div className="flex h-40 w-full items-center px-4">
-      <div className="flex h-full w-4/5 gap-6">
-        <div className="h-40 w-40 rounded-lg bg-dark-600"></div>
-        <div className="flex flex-col justify-between ">
-          <h2 className="font-semibold text-transparent bg-dark-600 rounded-lg">
-            Placeholder
-          </h2>
-          <div className="flex flex-col gap-1">
-            <h1 className="text-7xl font-black text-transparent bg-dark-600 rounded-lg">
-              Track name
-            </h1>
-            <p className="text-sm text-transparent bg-dark-600 rounded-lg">
-              Placeholder description
+  <div className="h-full w-full flex flex-col">
+    <div className="flex pt-4 px-4 box-border">
+      <div className="flex h-full w-full items-center justify-between">
+        <div className="h-full w-full grid grid-cols-[200px_1fr] gap-6">
+          <div className="rounded-lg overflow-hidden h-[200px] bg-dark-600"></div>
+          <div className="flex flex-col justify-end gap-4 py-1 overflow-hidden">
+            <h2 className="capitalize font-semibold bg-dark-600 text-transparent w-fit rounded-lg">
+              Placeholder
+            </h2>
+            <div className="flex flex-col gap-1">
+              <h1 className="text-7xl font-black truncate overflow-hidden bg-dark-600 text-transparent w-fit rounded-lg">
+                Music name
+              </h1>
+              <p className="text-sm truncate overflow-hidden bg-dark-600 text-transparent w-fit rounded-lg">
+                Music description description.
+              </p>
+            </div>
+            <p className="flex items-center gap-1 text-sm bg-dark-600 text-transparent w-fit rounded-lg">
+              <span className="font-semibold">Owner name</span>•
+              <span>xx tracks</span>
             </p>
           </div>
-          <p className="flex items-center gap-1 text-sm">
-            <span className="font-semibold text-transparent bg-dark-600 rounded-lg">
-              Owner Name • xx tracks
-            </span>
-          </p>
         </div>
       </div>
     </div>
