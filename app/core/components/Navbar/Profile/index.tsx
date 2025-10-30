@@ -1,5 +1,6 @@
 import { SquareArrowOutUpRight } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 import { IconButton } from "~/core/components/IconButton";
 import { authenticateSpotifyUser, logout } from "~/core/services";
@@ -9,6 +10,8 @@ import { Avatar } from "../Avatar";
 import { ProfileItem } from "./ProfileItem";
 
 export const Profile = () => {
+  const { t } = useTranslation();
+
   const menuRef = useRef<HTMLUListElement>(null);
 
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
@@ -80,10 +83,13 @@ export const Profile = () => {
         >
           <ProfileItem
             icon={<SquareArrowOutUpRight size={14} />}
-            label="Account"
+            label={t("profile.menu.items.account")}
             onClick={onAccountClick}
           />
-          <ProfileItem label="Logout" onClick={onLogout} />
+          <ProfileItem
+            label={t("profile.menu.items.logout")}
+            onClick={onLogout}
+          />
         </ul>
       )}
     </div>
