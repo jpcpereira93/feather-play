@@ -9,7 +9,7 @@ export const LibraryCardSkeleton = () => (
 );
 
 export const LibraryCard = ({ img, subtitle, title }: LibraryCardProps) => (
-  <article className="flex flex-col h-80 w-full overflow-hidden bg-dark-600 rounded-lg tracking-tight hover:cursor-pointer hover:outline-3 hover:outline-offset-1 hover:outline-dark-400">
+  <article className="flex flex-col h-80 w-full overflow-hidden bg-dark-600 rounded-lg  hover:cursor-pointer hover:outline-3 hover:outline-offset-1 hover:outline-dark-400">
     <div className="h-2/3 overflow-hidden">
       {img.length > 0 && <img src={img} alt={title}></img>}
     </div>

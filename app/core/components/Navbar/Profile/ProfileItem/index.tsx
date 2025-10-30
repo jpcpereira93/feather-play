@@ -9,7 +9,7 @@ interface ProfileItemProps {
 export const ProfileItem = ({ icon, label, onClick }: ProfileItemProps) => (
   // biome-ignore lint/a11y/useKeyWithClickEvents: a11y
   <li
-    className="p-2 rounded-lg flex items-center justify-between hover:cursor-pointer hover:bg-slate-600 text-sm font-semibold tracking-tight"
+    className="p-2 rounded-lg flex items-center justify-between hover:cursor-pointer hover:bg-slate-600 text-sm font-semibold "
     onClick={onClick}
   >
     {label}

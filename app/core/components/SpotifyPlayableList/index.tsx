@@ -52,7 +52,7 @@ export const SpotifyPlayableList = ({
           <div className="h-40 w-40 rounded-lg overflow-hidden">
             <img src={getImgSrc()} alt={name}></img>
           </div>
-          <div className="flex flex-col justify-between tracking-tight overflow-hidden">
+          <div className="flex flex-col justify-between  overflow-hidden">
             <h2 className="capitalize font-semibold">{type}</h2>
             <div className="flex flex-col gap-1 w-full">
               <h1 className="text-7xl font-black text-dark-300 truncate overflow-hidden">
@@ -94,7 +94,7 @@ export const SpotifyPlayableListSkeleton = ({
     <div className="flex h-40 w-full items-center px-4">
       <div className="flex h-full w-4/5 gap-6">
         <div className="h-40 w-40 rounded-lg bg-dark-600"></div>
-        <div className="flex flex-col justify-between tracking-tight">
+        <div className="flex flex-col justify-between ">
           <h2 className="font-semibold text-transparent bg-dark-600 rounded-lg">
             Placeholder
           </h2>

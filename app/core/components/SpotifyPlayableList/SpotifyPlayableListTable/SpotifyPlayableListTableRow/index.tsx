@@ -42,7 +42,7 @@ export const SpotifyPlayableListTableRow = ({
   return (
     <tr
       className={classNames(
-        "h-15 text-sm tracking-tight hover:cursor-pointer hover:bg-dark-600",
+        "h-15 text-sm  hover:cursor-pointer hover:bg-dark-600",
         { "bg-dark-600": isCurrentPlayingTrack },
       )}
       onDoubleClick={onDoubleClick}
@@ -79,7 +79,7 @@ export const SpotifyPlayableListTableRowSkeleton = ({
 }: {
   hasAlbum?: boolean;
 }) => (
-  <tr className="h-15 text-sm text-transparent tracking-tight">
+  <tr className="h-15 text-sm text-transparent ">
     <td className="rounded-l-lg text-center">
       <span className="rounded-lg bg-dark-600">10</span>
     </td>

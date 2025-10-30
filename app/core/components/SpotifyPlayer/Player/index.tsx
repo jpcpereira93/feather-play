@@ -101,7 +101,7 @@ export const Player = ({ deviceId, player }: PlayerProps) => {
         <div className="h-18 w-18 rounded-xl overflow-hidden bg-dark-600">
           {albumImage && <img src={albumImage} alt="Current track album" />}
         </div>
-        <div className="flex flex-col gap-1 font-semibold tracking-tight">
+        <div className="flex flex-col gap-1 font-semibold ">
           <p>{currentTrackName}</p>
           <p className="text-dark-500 text-sm">{currentTrackArtists}</p>
         </div>
