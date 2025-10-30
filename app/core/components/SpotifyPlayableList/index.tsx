@@ -46,8 +46,8 @@ export const SpotifyPlayableList = ({
   const onPlayTrack = (uri: string) => mutatePlaySpotifyItem({ uris: [uri] });
 
   return (
-    <div className="h-full w-full flex flex-col p-4 gap-6">
-      <div className="flex h-40 w-full items-center justify-between">
+    <div className="h-full w-full flex flex-col pt-4 gap-6">
+      <div className="flex h-40 w-full items-center justify-between px-4">
         <div className="flex h-full w-4/5 gap-6">
           <div className="h-40 w-40 rounded-lg overflow-hidden">
             <img src={getImgSrc()} alt={name}></img>
@@ -90,8 +90,8 @@ export const SpotifyPlayableListSkeleton = ({
 }: {
   hasAlbum?: boolean;
 }) => (
-  <div className="h-full w-full flex flex-col p-4 gap-6">
-    <div className="flex h-40 w-full items-center">
+  <div className="h-full w-full flex flex-col pt-4 gap-6">
+    <div className="flex h-40 w-full items-center px-4">
       <div className="flex h-full w-4/5 gap-6">
         <div className="h-40 w-40 rounded-lg bg-dark-600"></div>
         <div className="flex flex-col justify-between tracking-tight">

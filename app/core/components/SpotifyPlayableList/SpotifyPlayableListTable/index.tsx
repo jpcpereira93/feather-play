@@ -22,10 +22,10 @@ interface SpotifyPlayableListTableProps {
 const SpotifyPlayableListTableHead = ({ hasAlbum }: { hasAlbum?: boolean }) => (
   <thead className="text-sm sticky z-2 top-0 bg-dark-700 h-18">
     <tr>
-      <th className="font-medium w-14 rounded-l-lg">#</th>
+      <th className="font-medium w-16 rounded-l-lg">#</th>
       <th className="font-medium text-left">Title</th>
       {hasAlbum && <th className="font-medium text-left">Album</th>}
-      <th className="font-medium text-left w-20 rounded-r-lg">Duration</th>
+      <th className="font-medium text-left w-22 rounded-r-lg">Duration</th>
     </tr>
   </thead>
 );

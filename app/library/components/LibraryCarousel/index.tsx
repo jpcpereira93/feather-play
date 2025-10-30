@@ -9,7 +9,7 @@ interface LibraryCarouselProps {
 }
 
 export const LibraryCarousel = ({ children }: LibraryCarouselProps) => (
-  <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 h-full px-4 py-2 gap-4 overflow-scroll">
+  <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 h-full px-8 py-4 gap-4 overflow-scroll">
     {children}
   </div>
 );
