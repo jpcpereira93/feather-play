@@ -7,6 +7,7 @@ import classNames from "classnames";
 import { AudioLines, Play } from "lucide-react";
 import { useState } from "react";
 
+import { NavigableAlbum } from "~/core/components";
 import { getArtistsString, msToMinAndSec } from "~/core/utils";
 
 interface SpotifyPlayableListTableRowProps {
@@ -68,7 +69,11 @@ export const SpotifyPlayableListTableRow = ({
           <p className="text-xs">{getArtistsString(artists)}</p>
         </div>
       </td>
-      {album && <td className="font-semibold">{album.name}</td>}
+      {album && (
+        <td className="font-semibold hover:underline">
+          <NavigableAlbum id={album.id}>{album.name}</NavigableAlbum>
+        </td>
+      )}
       <td className="rounded-r-lg">{msToMinAndSec(duration)}</td>
     </tr>
   );
