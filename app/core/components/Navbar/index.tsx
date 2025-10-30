@@ -5,8 +5,8 @@ import { useLocation, useNavigate } from "react-router";
 import { IconButton } from "~/core/components/IconButton";
 import { SearchBar } from "~/core/components/SearchBar";
 
-import { Avatar } from "./Avatar";
 import { NavbarSection } from "./NavbarSection";
+import { Profile } from "./Profile";
 
 export const Navbar = () => {
   const location = useLocation();
@@ -69,9 +69,7 @@ export const Navbar = () => {
         </IconButton>
         <SearchBar />
       </NavbarSection>
-      <IconButton ariaLabel="Profile" onClick={onProfileClick}>
-        <Avatar />
-      </IconButton>
+      <Profile />
     </nav>
   );
 };
