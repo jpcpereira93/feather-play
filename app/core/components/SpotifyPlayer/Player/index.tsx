@@ -98,12 +98,12 @@ export const Player = ({ deviceId, player }: PlayerProps) => {
   return (
     <div className="relative h-full w-full flex items-center justify-between px-2">
       <div className="flex items-center gap-6">
-        <div className="h-18 w-18 rounded-xl overflow-hidden bg-slate-700/60">
+        <div className="h-18 w-18 rounded-xl overflow-hidden bg-dark-600">
           {albumImage && <img src={albumImage} alt="Current track album" />}
         </div>
         <div className="flex flex-col gap-1 font-semibold tracking-tight">
           <p>{currentTrackName}</p>
-          <p className="text-slate-500 text-sm">{currentTrackArtists}</p>
+          <p className="text-dark-500 text-sm">{currentTrackArtists}</p>
         </div>
       </div>
       <div className="absolute top-0 left-0 right-0 mx-auto h-full w-fit flex items-center gap-4">

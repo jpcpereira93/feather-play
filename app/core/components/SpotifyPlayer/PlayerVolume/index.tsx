@@ -57,10 +57,10 @@ export const PlayerVolume = ({ player }: PlayerVolumeProps) => {
       </PlayerButton>
       <span
         ref={volumeRef}
-        className="relative h-2 w-20 bg-slate-600/50 rounded-full overflow-hidden hover:cursor-pointer"
+        className="relative h-2 w-20 bg-dark-600 rounded-full overflow-hidden hover:cursor-pointer"
       >
         <span
-          className="absolute h-full bg-slate-500"
+          className="absolute h-full bg-dark-400"
           style={{
             width: `${volume * 100}%`,
           }}

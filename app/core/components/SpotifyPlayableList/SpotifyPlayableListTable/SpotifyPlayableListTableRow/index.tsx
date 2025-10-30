@@ -42,8 +42,8 @@ export const SpotifyPlayableListTableRow = ({
   return (
     <tr
       className={classNames(
-        "h-15 text-sm tracking-tight hover:cursor-pointer hover:bg-slate-700",
-        { "bg-slate-700": isCurrentPlayingTrack },
+        "h-15 text-sm tracking-tight hover:cursor-pointer hover:bg-dark-600",
+        { "bg-dark-600": isCurrentPlayingTrack },
       )}
       onDoubleClick={onDoubleClick}
       onMouseEnter={onMouseEnter}
@@ -51,7 +51,7 @@ export const SpotifyPlayableListTableRow = ({
     >
       <td className="rounded-l-lg text-center">
         {isCurrentPlayingTrack || isHovering ? (
-          <span className="flex items-center justify-center text-slate-300">
+          <span className="flex items-center justify-center text-dark-300">
             {isHovering ? (
               <Play fill="currentColor" size={14} onClick={onDoubleClick} />
             ) : (
@@ -64,7 +64,7 @@ export const SpotifyPlayableListTableRow = ({
       </td>
       <td>
         <div className="flex flex-col gap-1">
-          <p className="font-semibold text-slate-300">{name}</p>
+          <p className="font-semibold text-dark-300">{name}</p>
           <p className="text-xs">{getArtistsString(artists)}</p>
         </div>
       </td>
@@ -81,25 +81,25 @@ export const SpotifyPlayableListTableRowSkeleton = ({
 }) => (
   <tr className="h-15 text-sm text-transparent tracking-tight">
     <td className="rounded-l-lg text-center">
-      <span className="rounded-lg bg-slate-700">10</span>
+      <span className="rounded-lg bg-dark-600">10</span>
     </td>
     <td>
       <div className="flex flex-col gap-1">
         <p className="font-semibold">
-          <span className="rounded-lg bg-slate-700">Music name 123</span>
+          <span className="rounded-lg bg-dark-600">Music name 123</span>
         </p>
         <p className="text-xs">
-          <span className="rounded-lg bg-slate-700">Artist name</span>
+          <span className="rounded-lg bg-dark-600">Artist name</span>
         </p>
       </div>
     </td>
     {hasAlbum && (
       <td className="font-semibold">
-        <span className="rounded-lg bg-slate-700">Album name Album name</span>
+        <span className="rounded-lg bg-dark-600">Album name Album name</span>
       </td>
     )}
     <td className="rounded-r-lg">
-      <span className="rounded-lg bg-slate-700">3:00</span>
+      <span className="rounded-lg bg-dark-600">3:00</span>
     </td>
   </tr>
 );

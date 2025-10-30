@@ -27,9 +27,9 @@ export const TrackProgress = ({ player }: TrackProgressProps) => {
   }, [player]);
 
   return (
-    <span className="absolute -left-2 -right-2 -bottom-2 h-2 bg-slate-600/50">
+    <span className="absolute -left-2 -right-2 -bottom-2 h-2 bg-dark-600">
       <span
-        className="absolute h-full bg-slate-500"
+        className="absolute h-full bg-dark-500"
         style={{
           width: `${currentTrackPosition}%`,
         }}

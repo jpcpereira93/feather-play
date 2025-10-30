@@ -16,8 +16,8 @@ export const IconButton = ({
   <button
     aria-label={ariaLabel}
     disabled={disabled}
-    className="bg-slate-700/60 text-slate-400 flex justify-center items-center p-2 rounded-lg 
-    hover:cursor-pointer hover:bg-slate-700 disabled:bg-slate-700 disabled:text-slate-500"
+    className="bg-dark-700 flex justify-center items-center p-2 rounded-lg 
+    hover:cursor-pointer hover:bg-dark-600 disabled:bg-dark-700/60 disabled:text-dark-600"
     onClick={onClick}
     type="button"
   >

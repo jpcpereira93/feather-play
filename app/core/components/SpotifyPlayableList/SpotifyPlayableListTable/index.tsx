@@ -20,7 +20,7 @@ interface SpotifyPlayableListTableProps {
 }
 
 const SpotifyPlayableListTableHead = ({ hasAlbum }: { hasAlbum?: boolean }) => (
-  <thead className="text-sm sticky z-2 top-0 bg-slate-800 h-15">
+  <thead className="text-sm sticky z-2 top-0 bg-dark-700 h-18">
     <tr>
       <th className="font-medium w-14 rounded-l-lg">#</th>
       <th className="font-medium text-left">Title</th>
