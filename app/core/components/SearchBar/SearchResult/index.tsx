@@ -18,7 +18,7 @@ export const SearchResult = ({
   return (
     // biome-ignore lint/a11y/useKeyWithClickEvents: a11y
     <article
-      className="m-1 p-2 rounded-lg flex items-center gap-2 hover:cursor-pointer hover:bg-slate-700/60 overflow-hidden"
+      className="m-1 p-2 rounded-lg flex items-center gap-2 overflow-hidden hover:cursor-pointer hover:bg-dark-600"
       onClick={onClick}
     >
       <div className="h-8 w-8 rounded overflow-hidden">

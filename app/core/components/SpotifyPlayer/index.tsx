@@ -1,6 +1,6 @@
 import { useRouteLoaderData } from "react-router";
 
-import { Section } from "~/core/components/Section";
+import { Box } from "~/core/components/Box";
 import { useSpotifyPlayer } from "~/core/hooks";
 
 import { Player } from "./Player";
@@ -14,9 +14,9 @@ export const SpotifyPlayer = () => {
 
   return (
     <div className="h-35 w-full">
-      <Section>
+      <Box>
         {player && deviceId && <Player deviceId={deviceId} player={player} />}
-      </Section>
+      </Box>
     </div>
   );
 };

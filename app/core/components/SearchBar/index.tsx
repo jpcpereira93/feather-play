@@ -58,7 +58,7 @@ export const SearchBar = () => {
 
   return (
     <div
-      className="relative bg-slate-700/60 text-slate-400 p-2 rounded-lg min-w-sm flex items-center gap-2 text-sm font-semibold tracking-tight
+      className="relative bg-dark-700 p-2 rounded-lg min-w-sm flex items-center gap-2 text-sm font-semibold 
 "
     >
       <Search />
@@ -81,7 +81,7 @@ export const SearchBar = () => {
         </button>
       )}
       {isFocused && searchResults && (
-        <div className="absolute top-12 left-0 right-0 z-50 h-100 bg-slate-800 rounded-lg p-2 overflow-scroll">
+        <div className="absolute top-12 left-0 right-0 z-50 h-100 bg-dark-700 rounded-lg p-2 overflow-scroll">
           {searchResults.tracks.items.map(
             ({ album, artists, id, name, uri }) => (
               <SearchResult

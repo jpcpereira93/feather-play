@@ -9,8 +9,8 @@ interface TabProps {
 export const Tab = ({ active, children }: TabProps) => (
   <li
     className={classNames(
-      "flex items-center p-3 rounded-xl text-sm font-bold tracking-tighter hover:cursor-pointer hover:bg-slate-700",
-      { "bg-slate-700": active },
+      "flex items-center p-3 rounded-xl text-sm font-bold tracking-tighter hover:cursor-pointer hover:bg-dark-600",
+      { "bg-dark-600": active },
     )}
   >
     {children}

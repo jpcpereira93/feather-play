@@ -43,8 +43,6 @@ export const Navbar = () => {
 
   const onHomeClick = () => navigate("/library");
 
-  const onProfileClick = () => console.log("profile click");
-
   return (
     <nav className="w-full flex items-center justify-between py-2">
       <NavbarSection>

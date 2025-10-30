@@ -9,7 +9,7 @@ import {
 } from "react-router";
 
 import { queryClient } from "~/core/api";
-import { Navbar, Section, SideMenu, SpotifyPlayer } from "~/core/components";
+import { Box, Navbar, SideMenu, SpotifyPlayer } from "~/core/components";
 import { SpotifyPlayerProvider } from "~/core/context";
 import { authenticateSpotifyUser } from "~/core/services";
 
@@ -49,7 +49,10 @@ export function Layout({ children }: { children: React.ReactNode }) {
           <Meta />
           <Links />
         </head>
-        <body className="antialiased bg-neutral-100 dark:bg-slate-800/40 h-screen w-screen p-2 flex flex-col gap-2 overflow-hidden">
+        <body
+          className="antialiased bg-neutral-100 dark:bg-dark-800 dark:text-dark-400 h-screen w-screen p-2 flex flex-col gap-2 overflow-hidden tracking-tight select-none
+"
+        >
           <SpotifyPlayerProvider>
             <Navbar />
             <main className="flex flex-col h-full w-full gap-2 overflow-hidden">
@@ -57,7 +60,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
                 <div className="w-1/3 xl:w-1/4">
                   <SideMenu />
                 </div>
-                <Section>{children}</Section>
+                <Box>{children}</Box>
               </div>
               <SpotifyPlayer />
             </main>

@@ -11,8 +11,8 @@ interface SideMenuTabProps {
 export const SideMenuTabSkeleton = () => (
   <Tab>
     <div className="flex items-center gap-4 w-full">
-      <span className="h-8 w-8 rounded bg-slate-700"></span>
-      <span className="rounded bg-slate-700 h-3 w-1/3"></span>
+      <span className="h-8 w-8 rounded bg-dark-600"></span>
+      <span className="rounded bg-dark-600 h-3 w-1/3"></span>
     </div>
   </Tab>
 );

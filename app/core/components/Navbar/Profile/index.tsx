@@ -75,7 +75,7 @@ export const Profile = () => {
       </IconButton>
       {isMenuOpen && (
         <ul
-          className="absolute top-12 right-0 z-50 w-50 bg-slate-800 rounded-lg p-2"
+          className="absolute top-12 right-0 z-50 w-50 bg-dark-700 rounded-lg p-2"
           ref={menuRef}
         >
           <ProfileItem
