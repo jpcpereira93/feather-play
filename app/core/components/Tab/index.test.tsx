@@ -7,5 +7,5 @@ test("should display the tab active state correctly", () => {
 
   const tab = screen.getByText("test");
 
-  expect(tab.className).toContain("bg-slate-700");
+  expect(tab.className).toContain("bg-dark-600");
 });

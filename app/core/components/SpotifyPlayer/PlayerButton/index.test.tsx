@@ -25,5 +25,5 @@ test("should display the button active state correctly", () => {
 
   const btn = screen.getByRole("button");
 
-  expect(btn.className).toContain("text-slate-300");
+  expect(btn.className).toContain("text-dark-300");
 });
