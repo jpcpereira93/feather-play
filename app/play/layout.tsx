@@ -20,18 +20,20 @@ export default function PlayLayout({ loaderData }: Route.ComponentProps) {
   return (
     <QueryClientProvider client={queryClient}>
       <SpotifyPlayerProvider>
-        <Navbar />
-        <main className="flex flex-col h-full w-full gap-2 overflow-hidden">
-          <div className="flex h-full gap-2 overflow-hidden">
-            <div className="w-1/3 xl:w-1/4">
-              <SideMenu />
+        <div className="h-screen w-screen p-2 flex flex-col gap-2 overflow-hidden">
+          <Navbar />
+          <main className="flex flex-col h-full w-full gap-2 overflow-hidden">
+            <div className="flex h-full gap-2 overflow-hidden">
+              <div className="w-1/3 xl:w-1/4">
+                <SideMenu />
+              </div>
+              <Box>
+                <Outlet />
+              </Box>
             </div>
-            <Box>
-              <Outlet />
-            </Box>
-          </div>
-        </main>
-        <SpotifyPlayer accessToken={spotifyAccessToken} />
+          </main>
+          <SpotifyPlayer accessToken={spotifyAccessToken} />
+        </div>
       </SpotifyPlayerProvider>
     </QueryClientProvider>
   );

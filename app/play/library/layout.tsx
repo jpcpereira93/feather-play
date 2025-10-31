@@ -7,15 +7,15 @@ import type { ILibraryTab } from "~/play/library/models";
 const LIBRARY_TABS: ILibraryTab[] = [
   {
     label: "library.tabs.playlists",
-    path: "/library/playlists",
+    path: "/play/library/playlists",
   },
   {
     label: "library.tabs.artists",
-    path: "/library/artists",
+    path: "/play/library/artists",
   },
   {
     label: "library.tabs.albums",
-    path: "/library/albums",
+    path: "/play/library/albums",
   },
 ];
 

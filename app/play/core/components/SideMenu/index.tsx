@@ -13,11 +13,11 @@ export const SideMenu = () => {
     <Box>
       <div className="flex flex-col gap-3 h-full py-4">
         <ul className="flex flex-col gap-2 mx-2">
-          <SideMenuTab to="/library">
+          <SideMenuTab to="/play/library">
             <Library />
             {t("side_menu.tabs.library")}
           </SideMenuTab>
-          <SideMenuTab to="/liked-songs">
+          <SideMenuTab to="/play/liked-songs">
             <Heart />
             {t("side_menu.tabs.liked_songs")}
           </SideMenuTab>

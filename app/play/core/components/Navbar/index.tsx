@@ -41,7 +41,7 @@ export const Navbar = () => {
     navigate(+1);
   };
 
-  const onHomeClick = () => navigate("/library");
+  const onHomeClick = () => navigate("/play/library");
 
   return (
     <nav className="w-full flex items-center justify-between py-2">

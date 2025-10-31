@@ -33,7 +33,7 @@ export default function Albums() {
         const { id, images, name, artists, release_date } = album;
 
         return (
-          <NavLink key={id} to={`/albums/${id}`}>
+          <NavLink key={id} to={`/play/albums/${id}`}>
             <LibraryCard
               img={getSpotifyItemImageUrl(images)}
               key={id}

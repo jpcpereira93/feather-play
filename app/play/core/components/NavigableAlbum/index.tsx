@@ -7,5 +7,5 @@ interface NavigableAlbumProps {
 }
 
 export const NavigableAlbum = ({ id, children }: NavigableAlbumProps) => (
-  <NavLink to={`/albums/${id}`}>{children}</NavLink>
+  <NavLink to={`/play/albums/${id}`}>{children}</NavLink>
 );
