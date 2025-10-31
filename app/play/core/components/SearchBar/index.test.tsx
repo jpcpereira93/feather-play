@@ -4,7 +4,7 @@ import { SearchBar } from ".";
 
 const mockSearchQueryRefetch = vi.fn();
 
-vi.mock("~/core/hooks", async (importOriginal) => ({
+vi.mock("~/play/core/hooks", async (importOriginal) => ({
   ...(await importOriginal()),
   usePlaySpotifyItemMutation: () => ({ mutate: vi.fn() }),
   useSpotifySearchQuery: () => ({

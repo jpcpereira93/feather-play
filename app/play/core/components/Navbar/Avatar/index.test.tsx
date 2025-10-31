@@ -4,7 +4,7 @@ import { Avatar } from ".";
 
 const mockUseGetCurrentSpotifyUserProfile = vi.fn();
 
-vi.mock("~/core/hooks", async (importOriginal) => ({
+vi.mock("~/play/core/hooks", async (importOriginal) => ({
   ...(await importOriginal()),
   useGetCurrentSpotifyUserProfileQuery: () =>
     mockUseGetCurrentSpotifyUserProfile(),
