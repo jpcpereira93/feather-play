@@ -1,16 +1,17 @@
 import { SquareArrowOutUpRight } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
-
+import { useNavigate } from "react-router";
 import { IconButton } from "~/play/core/components/IconButton";
-import { authenticateSpotifyUser, logout } from "~/play/core/services";
+import { logout } from "~/play/core/services";
 import { debounce } from "~/play/core/utils";
-
 import { Avatar } from "../Avatar";
 import { ProfileItem } from "./ProfileItem";
 
 export const Profile = () => {
   const { t } = useTranslation();
+
+  const navigate = useNavigate();
 
   const menuRef = useRef<HTMLUListElement>(null);
 
@@ -31,7 +32,7 @@ export const Profile = () => {
 
     setIsMenuOpen(false);
 
-    authenticateSpotifyUser().then();
+    navigate("/");
   };
 
   const onOutsideClick = (ev: MouseEvent) => {
