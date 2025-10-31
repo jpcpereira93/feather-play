@@ -12,6 +12,8 @@ import { useEffect, useState } from "react";
 import { useSpotifyPlayerContext } from "~/core/context";
 import {
   useHasCurrentSpotifyUserSavedTracksQuery,
+  useRemoveSavedSpotifyTracksMutation,
+  useSaveSpotifyTracksMutation,
   useToggleSpotifyRepeatModeMutation,
   useToggleSpotifyShuffleModeMutation,
   useTransferSpotifyPlaybackToCurrentDeviceMutation,
@@ -32,7 +34,7 @@ export const Player = ({ deviceId, player }: PlayerProps) => {
   const { currentTrackId, setCurrentTrackId, setIsPlaying } =
     useSpotifyPlayerContext();
 
-  const { data: hasCurrentTracksSaved } =
+  const { data: hasCurrentTracksSaved, refetch: refetchHasCurrentTracksSaved } =
     useHasCurrentSpotifyUserSavedTracksQuery(
       currentTrackId ? [currentTrackId] : [],
     );
@@ -42,6 +44,9 @@ export const Player = ({ deviceId, player }: PlayerProps) => {
     hasCurrentTracksSaved.length > 0 &&
     !!hasCurrentTracksSaved[0];
 
+  const { mutate: mutateRemoveSavedSpotifyTracks } =
+    useRemoveSavedSpotifyTracksMutation();
+  const { mutate: mutateSaveSpotifyTracks } = useSaveSpotifyTracksMutation();
   const { mutate: mutateTransferSpotifyPlayback } =
     useTransferSpotifyPlaybackToCurrentDeviceMutation(deviceId);
   const { mutate: mutateToggleSpotifyRepeatMode } =
@@ -88,6 +93,18 @@ export const Player = ({ deviceId, player }: PlayerProps) => {
     };
   }, [player]);
 
+  const onLikeClick = () => {
+    if (isCurrentPlayingTrackSaved) {
+      mutateRemoveSavedSpotifyTracks([currentTrackId]);
+    } else {
+      mutateSaveSpotifyTracks([currentTrackId]);
+    }
+
+    setTimeout(() => {
+      refetchHasCurrentTracksSaved();
+    }, 500);
+  };
+
   const onNextTrackClick = () => {
     player.nextTrack();
   };
@@ -122,7 +139,7 @@ export const Player = ({ deviceId, player }: PlayerProps) => {
             </p>
           </div>
         </div>
-        <PlayerButton active={isCurrentPlayingTrackSaved} onClick={() => {}}>
+        <PlayerButton onClick={onLikeClick}>
           <Heart
             size={20}
             fill={isCurrentPlayingTrackSaved ? "currentColor" : "transparent"}
