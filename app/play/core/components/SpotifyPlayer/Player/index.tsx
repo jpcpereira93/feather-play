@@ -9,7 +9,7 @@ import {
 } from "lucide-react";
 import { useEffect, useState } from "react";
 
-import { useSpotifyPlayerContext } from "~/play/core/context";
+import { usePlayingContext } from "~/play/core/context";
 import {
   useHasCurrentSpotifyUserSavedTracksQuery,
   useRemoveSavedSpotifyTracksMutation,
@@ -32,7 +32,7 @@ interface PlayerProps {
 
 export const Player = ({ deviceId, player }: PlayerProps) => {
   const { currentTrackId, setCurrentTrackId, setIsPlaying } =
-    useSpotifyPlayerContext();
+    usePlayingContext();
 
   const { data: hasCurrentTracksSaved, refetch: refetchHasCurrentTracksSaved } =
     useHasCurrentSpotifyUserSavedTracksQuery(

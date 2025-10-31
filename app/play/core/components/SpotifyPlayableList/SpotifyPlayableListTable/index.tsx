@@ -6,7 +6,7 @@ import type {
 } from "@spotify/web-api-ts-sdk";
 import { useTranslation } from "react-i18next";
 
-import { useSpotifyPlayerContext } from "~/play/core/context";
+import { usePlayingContext } from "~/play/core/context";
 import { getPlaceholderArray } from "~/play/core/utils";
 
 import {
@@ -53,7 +53,7 @@ export const SpotifyPlayableListTable = ({
   tracks,
   onPlayTrack,
 }: SpotifyPlayableListTableProps & SpotifyPlayableListTableBaseProps) => {
-  const { currentTrackId, isPlaying } = useSpotifyPlayerContext();
+  const { currentTrackId, isPlaying } = usePlayingContext();
 
   return (
     <div className="overflow-auto">

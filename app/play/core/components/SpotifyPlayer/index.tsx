@@ -1,20 +1,23 @@
+import React from "react";
+
 import { Box } from "~/play/core/components/Box";
-import { useSpotifyPlayer } from "~/play/core/hooks";
+import { useSpotifyPlayerContext } from "~/play/core/context";
 
 import { Player } from "./Player";
 
-interface SpotifyPlayerProps {
-  accessToken: string;
-}
-
-export const SpotifyPlayer = ({ accessToken }: SpotifyPlayerProps) => {
-  const [player, deviceId] = useSpotifyPlayer(accessToken);
+export const SpotifyPlayer = React.memo(() => {
+  const spotifyPlayerContext = useSpotifyPlayerContext();
 
   return (
     <div className="h-35 w-full">
       <Box>
-        {player && deviceId && <Player deviceId={deviceId} player={player} />}
+        {spotifyPlayerContext?.player && spotifyPlayerContext?.deviceId && (
+          <Player
+            deviceId={spotifyPlayerContext.deviceId}
+            player={spotifyPlayerContext.player}
+          />
+        )}
       </Box>
     </div>
   );
-};
+});
