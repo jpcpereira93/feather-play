@@ -36,7 +36,18 @@ export const getCurrentSpotifyUserPlaylists = async () =>
 export const getCurrentSpotifyUserProfile = async () =>
   await spotifyApi.currentUser.profile();
 
+export const hasCurrentSpotifyUserSavedTracks = async (tracks: string[]) =>
+  await spotifyApi.currentUser.tracks.hasSavedTracks(tracks);
+
 export const logout = () => spotifyApi.logOut();
+
+export const removeSavedTracks = async (tracks: string[]) =>
+  // @ts-expect-error: Spotify API is wrongly typed, should be {ids: string[]}
+  await spotifyApi.currentUser.tracks.removeSavedTracks({ ids: tracks });
+
+export const saveTracks = async (tracks: string[]) =>
+  // @ts-expect-error: Spotify API is wrongly typed, should be {ids: string[]}
+  await spotifyApi.currentUser.tracks.saveTracks({ ids: tracks });
 
 export const searchSpotify = async (searchTerm: string) =>
   await spotifyApi.search(searchTerm, ["track"]);
