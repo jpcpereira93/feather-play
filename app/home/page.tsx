@@ -1,4 +1,4 @@
-import { redirect } from "react-router";
+import { NavLink } from "react-router";
 
 export function meta() {
   return [
@@ -7,10 +7,12 @@ export function meta() {
   ];
 }
 
-// export async function clientLoader() {
-//   return redirect("/library");
-// }
-
 export default function Home() {
-  return <div></div>;
+  return (
+    <div>
+      <nav>
+        <NavLink to="/play">login</NavLink>
+      </nav>
+    </div>
+  );
 }
