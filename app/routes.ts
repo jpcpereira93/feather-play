@@ -3,20 +3,13 @@ import {
   layout,
   prefix,
   type RouteConfig,
-  route,
 } from "@react-router/dev/routes";
+
+import { playRoutes } from "./play/routes";
 
 export default [
   index("home/page.tsx"),
-  ...prefix("library", [
-    layout("library/layout.tsx", [
-      index("library/page.tsx"),
-      route("albums", "library/albums/page.tsx"),
-      route("artists", "library/artists/page.tsx"),
-      route("playlists", "library/playlists/page.tsx"),
-    ]),
+  ...prefix("play", [
+    layout("play/layout.tsx", [index("play/page.tsx"), ...playRoutes]),
   ]),
-  route("liked-songs", "liked-songs/page.tsx"),
-  route("albums/:albumId", "album/page.tsx"),
-  route("playlists/:playlistId", "playlist/page.tsx"),
 ] satisfies RouteConfig;

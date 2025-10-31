@@ -16,7 +16,7 @@
     "baseUrl": ".",
     "paths": {
       "~/*": ["./app/*"],
-      "~core/*": ["./app/core/*"]
+      "~core/*": ["app/play/core/*"]
     },
     "esModuleInterop": true,
     "verbatimModuleSyntax": true,
