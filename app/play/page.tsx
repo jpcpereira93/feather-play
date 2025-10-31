@@ -7,10 +7,10 @@ export function meta() {
   ];
 }
 
-// export async function clientLoader() {
-//   return redirect("/library");
-// }
+export async function clientLoader() {
+  return redirect("/play/library");
+}
 
-export default function Home() {
+export default function Play() {
   return <></>;
 }
