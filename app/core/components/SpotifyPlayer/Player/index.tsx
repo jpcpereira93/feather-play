@@ -1,4 +1,5 @@
 import {
+  Heart,
   Pause,
   Play,
   Repeat,
@@ -10,6 +11,7 @@ import { useEffect, useState } from "react";
 
 import { useSpotifyPlayerContext } from "~/core/context";
 import {
+  useHasCurrentSpotifyUserSavedTracksQuery,
   useToggleSpotifyRepeatModeMutation,
   useToggleSpotifyShuffleModeMutation,
   useTransferSpotifyPlaybackToCurrentDeviceMutation,
@@ -27,7 +29,18 @@ interface PlayerProps {
 }
 
 export const Player = ({ deviceId, player }: PlayerProps) => {
-  const { setCurrentTrackId, setIsPlaying } = useSpotifyPlayerContext();
+  const { currentTrackId, setCurrentTrackId, setIsPlaying } =
+    useSpotifyPlayerContext();
+
+  const { data: hasCurrentTracksSaved } =
+    useHasCurrentSpotifyUserSavedTracksQuery(
+      currentTrackId ? [currentTrackId] : [],
+    );
+
+  const isCurrentPlayingTrackSaved =
+    hasCurrentTracksSaved &&
+    hasCurrentTracksSaved.length > 0 &&
+    !!hasCurrentTracksSaved[0];
 
   const { mutate: mutateTransferSpotifyPlayback } =
     useTransferSpotifyPlaybackToCurrentDeviceMutation(deviceId);
@@ -97,16 +110,24 @@ export const Player = ({ deviceId, player }: PlayerProps) => {
 
   return (
     <div className="relative h-full w-full flex items-center justify-between px-5">
-      <div className="flex w-60 md:w-80 shrink-0 items-center gap-3 md:gap-5">
-        <div className="h-15 w-15 rounded-xl overflow-hidden bg-dark-600">
-          {albumImage && <img src={albumImage} alt="Current track album" />}
+      <div className="flex w-60 md:w-100 shrink-0 items-center gap-5">
+        <div className="flex items-center gap-1 md:gap-3">
+          <div className="h-15 w-15 rounded-xl overflow-hidden bg-dark-600">
+            {albumImage && <img src={albumImage} alt="Current track album" />}
+          </div>
+          <div className="flex flex-col font-semibold text-sm md:text-base">
+            <p>{currentTrackName}</p>
+            <p className="text-dark-500 text-xs md:text-sm">
+              {currentTrackArtists}
+            </p>
+          </div>
         </div>
-        <div className="flex flex-col font-semibold text-sm md:text-base">
-          <p>{currentTrackName}</p>
-          <p className="text-dark-500 text-xs md:text-sm">
-            {currentTrackArtists}
-          </p>
-        </div>
+        <PlayerButton active={isCurrentPlayingTrackSaved} onClick={() => {}}>
+          <Heart
+            size={20}
+            fill={isCurrentPlayingTrackSaved ? "currentColor" : "transparent"}
+          />
+        </PlayerButton>
       </div>
       <div className="h-full w-fit flex shrink-0 items-center justify-center gap-4">
         <PlayerButton active={isShuffleMode} onClick={onToggleShuffleModeClick}>
@@ -129,7 +150,7 @@ export const Player = ({ deviceId, player }: PlayerProps) => {
           <Repeat size={20} />
         </PlayerButton>
       </div>
-      <div className="flex w-60 md:w-80 justify-end">
+      <div className="flex w-100 md:w-80 justify-end">
         <PlayerVolume player={player} />
       </div>
       <TrackProgress player={player} />
