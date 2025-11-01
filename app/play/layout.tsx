@@ -11,6 +11,10 @@ import {
 
 import type { Route } from "./+types/layout";
 
+export function shouldRevalidate() {
+  return false;
+}
+
 export async function clientLoader() {
   const spotifyClientId = localStorage.getItem("spotifyClientId");
 
@@ -20,11 +24,7 @@ export async function clientLoader() {
 
   const spotifyApi = createSpotifyApi(spotifyClientId);
 
-  const { authenticated, accessToken } = await spotifyApi.authenticate();
-
-  if (!authenticated) {
-    return redirect("/login");
-  }
+  const { accessToken } = await spotifyApi.authenticate();
 
   return { spotifyAccessToken: accessToken.access_token, spotifyApi };
 }
@@ -37,9 +37,9 @@ export default function PlayLayout({ loaderData }: Route.ComponentProps) {
   }
 
   return (
-    <SpotifyApiProvider spotifyApi={spotifyApi}>
-      <SpotifyPlayerProvider accessToken={spotifyAccessToken}>
-        <QueryClientProvider client={queryClient}>
+    <QueryClientProvider client={queryClient}>
+      <SpotifyApiProvider spotifyApi={spotifyApi}>
+        <SpotifyPlayerProvider accessToken={spotifyAccessToken}>
           <PlayingProvider>
             <div className="h-screen w-screen p-2 flex flex-col gap-2 overflow-hidden">
               <Navbar />
@@ -56,8 +56,8 @@ export default function PlayLayout({ loaderData }: Route.ComponentProps) {
               <SpotifyPlayer />
             </div>
           </PlayingProvider>
-        </QueryClientProvider>
-      </SpotifyPlayerProvider>
-    </SpotifyApiProvider>
+        </SpotifyPlayerProvider>
+      </SpotifyApiProvider>
+    </QueryClientProvider>
   );
 }

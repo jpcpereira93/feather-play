@@ -33,6 +33,8 @@ export const Profile = () => {
 
     spotifyApi.logOut();
 
+    localStorage.removeItem("spotifyClientId");
+
     setIsMenuOpen(false);
 
     navigate("/");
