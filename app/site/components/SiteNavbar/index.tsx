@@ -21,7 +21,7 @@ export const SiteNavbar = () => {
         <SiteNavbarButton label="FAQ" to="" />
         <NavLink to="play">
           <button
-            className="bg-brand-600 text-slate-100 px-3 py-1 rounded-lg font-black uppercase hover:bg-brand-500 hover:cursor-pointer"
+            className="bg-brand-600 text-slate-100 px-3 py-1 rounded-md font-black uppercase hover:bg-brand-500 hover:cursor-pointer"
             type="button"
           >
             Login

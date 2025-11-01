@@ -8,7 +8,7 @@ import {
 import { playRoutes } from "./play/routes";
 
 export default [
-  index("home/page.tsx"),
+  layout("site/layout.tsx", [index("site/page.tsx")]),
   ...prefix("play", [
     layout("play/layout.tsx", [index("play/page.tsx"), ...playRoutes]),
   ]),
