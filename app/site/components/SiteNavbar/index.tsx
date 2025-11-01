@@ -22,7 +22,7 @@ export const SiteNavbar = () => {
       <div className="flex items-center justify-end gap-4">
         <SiteNavbarButton label={t("navbar.setup_guide")} to="" />
         <SiteNavbarButton label={t("navbar.faq")} to="" />
-        <NavLink to="play">
+        <NavLink to="login">
           <button
             className="bg-brand-600 text-slate-100 px-3 py-1 rounded-md font-black uppercase hover:bg-brand-500 hover:cursor-pointer"
             type="button"
