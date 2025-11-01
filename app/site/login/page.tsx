@@ -1,7 +1,7 @@
 import { Form, redirect } from "react-router";
 
 export function clientAction() {
-  localStorage.setItem("spotifyClientId", "9a7c140d88804735a5d729e30c8d620e");
+  localStorage.setItem("spotifyClientId", "");
 
   return redirect("/play");
 }
