@@ -1,9 +1,9 @@
 {
-  "name": "@jpcpereira93/spotify-client",
+  "name": "@jpcpereira93/feather-play",
   "private": true,
   "version": "0.0.1",
   "type": "module",
-  "description": "A custom Spotify Client using React Router v7.",
+  "description": "A custom lightweight Spotify Client using React Router v7.",
   "author": "José Pereira",
   "license": "MIT",
   "repository": {
