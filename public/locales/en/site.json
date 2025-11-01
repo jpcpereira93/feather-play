@@ -1,0 +1,40 @@
+{
+  "home": {
+    "about": {
+      "title": "What is FeatherPlay?",
+      "content": {
+        "catch_phrase": "FeatherPlay is a modern take to old-school, classic music players like Winamp and foobar2000.",
+        "description": "I'll always be thankful to Spotify, for changing the music industry and allow us to play our favorite tracks, albums and playlists anywhere. For the past few years, even though with good intentions to provide more features for their users, in my opinion the app became bloated.\n\nMost of the time, either while working or gaming, I only want to play some saved album or playlist, I don't need to explore, discover or see more information about the track/artist.\n\nI'm relatively \"organized\", so I have a large set of playlists that match my mood and what I want to listen at the time. If you're like me, then FeatherPlay is made for you.\n\n",
+        "header": "FeatherPlay is a lightweight, debloated Spotify client."
+      }
+    },
+    "features": {
+      "description": "With zero bloat, FeatherPlay is extremely lean and gives you all the features that really matter. No more endless searching through Spotify recommendations and history, just switch between your albums and playlists effortless and enjoy your music.",
+      "items": {
+        "browse": "Browse your library",
+        "listen_albums": "Listen to albums",
+        "listen_saved_playlists": "Listen to your saved playlists",
+        "listen_saved_tracks": "Listen to your saved tracks",
+        "save_tracks": "Save tracks",
+        "search_tracks": "Search tracks"
+      },
+      "title": "No bloat. All the Features."
+    },
+    "footer": {
+      "rights_reserved": "All rights reserved.",
+      "terms": "Terms"
+    },
+    "get_started": {
+      "button": {
+        "label": "Get Started"
+      },
+      "subtitle": "Only one thing left to do...",
+      "title": "Sounds good?"
+    },
+    "landing": {
+      "description": "No bloat, no screen pollution. Just play and save your favorite tracks, albums and playlists.",
+      "subtitle": "Feather weight Spotify client."
+    }
+  },
+  "navbar": { "faq": "FAQ", "login": "Login", "setup_guide": "Setup Guide" }
+}

@@ -6,7 +6,7 @@ interface FeatureListItemProps {
 }
 
 export const FeatureListItem = ({ label }: FeatureListItemProps) => {
-  const { t } = useTranslation();
+  const { t } = useTranslation("site");
 
   return (
     <li className="flex items-center gap-3">

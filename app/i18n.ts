@@ -8,10 +8,12 @@ i18n
   .use(LanguageDetector)
   .use(initReactI18next)
   .init({
+    defaultNS: "play",
     fallbackLng: "en",
     interpolation: {
       escapeValue: false, // not needed for react as it escapes by default
     },
+    ns: ["play", "site"],
   });
 
 export default i18n;
