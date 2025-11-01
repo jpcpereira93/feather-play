@@ -1,4 +1,4 @@
-import type { IFeatureItem } from "~/home/models";
+import type { IFeatureItem } from "~/site/models";
 
 import { FeatureListItem } from "./FeatureListItem";
 
