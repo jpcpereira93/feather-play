@@ -1,6 +1,5 @@
 import type {
   Image,
-  Page,
   SavedTrack,
   SimplifiedTrack,
   Track,
@@ -22,9 +21,11 @@ interface SpotifyPlayableListProps {
   hasAlbum?: boolean;
   images: Image[];
   name: string;
+  onLoadMore?: () => void;
   owner: string;
   uri: string;
-  tracks: Page<{ track: Track | SimplifiedTrack } | SavedTrack>;
+  total: number;
+  tracks: { track: Track | SimplifiedTrack }[] | SavedTrack[];
   type: string;
 }
 
@@ -33,8 +34,10 @@ export const SpotifyPlayableList = ({
   hasAlbum,
   images,
   name,
+  onLoadMore,
   owner,
   uri,
+  total,
   tracks,
   type,
 }: SpotifyPlayableListProps) => {
@@ -45,6 +48,12 @@ export const SpotifyPlayableList = ({
   const [backgroundColor, setBackgroundColor] = useState<string>();
 
   const getImgSrc = useCallback(() => getSpotifyItemImageUrl(images), [images]);
+
+  const onEndReached = () => {
+    if (onLoadMore) {
+      onLoadMore();
+    }
+  };
 
   const onPlayClick = () => mutatePlaySpotifyItem({ uri });
 
@@ -97,7 +106,7 @@ export const SpotifyPlayableList = ({
               <p className="flex items-center gap-1 text-sm">
                 <span className="font-semibold text-dark-300">{owner}</span>•
                 <span>
-                  {t("playable_list.header.tracks", { tracks: tracks.total })}
+                  {t("playable_list.header.tracks", { tracks: total })}
                 </span>
               </p>
             </div>
@@ -116,6 +125,7 @@ export const SpotifyPlayableList = ({
       <SpotifyPlayableListTable
         hasAlbum={hasAlbum}
         tracks={tracks}
+        onEndReached={onEndReached}
         onPlayTrack={onPlayTrack}
       />
     </div>

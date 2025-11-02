@@ -1,5 +1,4 @@
 import type {
-  Page,
   SavedTrack,
   SimplifiedTrack,
   Track,
@@ -7,7 +6,7 @@ import type {
 import { useTranslation } from "react-i18next";
 
 import { usePlayingContext } from "~/play/core/context";
-import { getPlaceholderArray } from "~/play/core/utils";
+import { getPlaceholderArray, handleInfiniteScroll } from "~/play/core/utils";
 
 import {
   SpotifyPlayableListTableRow,
@@ -19,7 +18,8 @@ interface SpotifyPlayableListTableBaseProps {
 }
 
 interface SpotifyPlayableListTableProps {
-  tracks: Page<{ track: Track | SimplifiedTrack } | SavedTrack>;
+  tracks: { track: Track | SimplifiedTrack }[] | SavedTrack[];
+  onEndReached: () => void;
   onPlayTrack: (uri: string) => void;
 }
 
@@ -50,17 +50,22 @@ const SpotifyPlayableListTableHead = ({
 
 export const SpotifyPlayableListTable = ({
   hasAlbum,
-  tracks,
+  onEndReached,
   onPlayTrack,
+  tracks,
 }: SpotifyPlayableListTableProps & SpotifyPlayableListTableBaseProps) => {
   const { currentTrackId, isPlaying } = usePlayingContext();
 
+  const handleScroll = (event: React.UIEvent<HTMLDivElement>) => {
+    handleInfiniteScroll(event, onEndReached, 200);
+  };
+
   return (
-    <div className="overflow-auto">
+    <div className="overflow-auto" onScroll={handleScroll}>
       <table className="w-full">
         <SpotifyPlayableListTableHead hasAlbum={hasAlbum} />
         <tbody>
-          {tracks.items.map(({ track }, index) => {
+          {tracks.map(({ track }, index) => {
             const { artists, duration_ms, id, name, uri } = track;
 
             return (
