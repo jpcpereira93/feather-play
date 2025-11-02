@@ -9,7 +9,7 @@ interface LibraryTabProps {
 }
 
 export const LibraryTab = ({ children, to }: LibraryTabProps) => (
-  <NavLink to={to}>
+  <NavLink to={to} prefetch="intent">
     {({ isActive }) => <Tab active={isActive}>{children}</Tab>}
   </NavLink>
 );

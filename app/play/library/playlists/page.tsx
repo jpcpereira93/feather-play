@@ -19,7 +19,7 @@ export default function Library() {
   return (
     <LibraryCarousel>
       {userPlaylists.items.map(({ description, id, images, name }) => (
-        <NavLink key={id} to={`/play/playlists/${id}`}>
+        <NavLink key={id} to={`/play/playlists/${id}`} prefetch="intent">
           <LibraryCard
             img={getSpotifyItemImageUrl(images)}
             subtitle={description}

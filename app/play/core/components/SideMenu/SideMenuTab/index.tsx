@@ -18,7 +18,7 @@ export const SideMenuTabSkeleton = () => (
 );
 
 export const SideMenuTab = ({ children, to }: SideMenuTabProps) => (
-  <NavLink to={to}>
+  <NavLink to={to} prefetch="intent">
     {({ isActive }) => (
       <Tab active={isActive}>
         <div className="flex items-center gap-4">{children}</div>
