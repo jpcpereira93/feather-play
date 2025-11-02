@@ -7,6 +7,11 @@ export const useGetSpotifyPlaylistQuery = (playlistId: string) => {
 
   return useQuery({
     queryKey: ["spotifyPlaylist", playlistId],
-    queryFn: async () => await spotifyApi.playlists.getPlaylist(playlistId),
+    queryFn: async () =>
+      await spotifyApi.playlists.getPlaylist(
+        playlistId,
+        undefined,
+        "description,images,name,owner,type,uri",
+      ),
   });
 };
