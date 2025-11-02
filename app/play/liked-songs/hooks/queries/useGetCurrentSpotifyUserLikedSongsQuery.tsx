@@ -11,7 +11,8 @@ export const useGetCurrentSpotifyUserLikedSongsQuery = () => {
     queryFn: async ({ pageParam }) =>
       await spotifyApi.currentUser.tracks.savedTracks(20, pageParam),
     initialPageParam: 0,
-    getNextPageParam: (lastPage) => lastPage.offset + lastPage.limit,
+    getNextPageParam: (lastPage) =>
+      lastPage.next ? lastPage.offset + lastPage.limit : null,
     select: selectItemsFromInfinitePages,
   });
 };
