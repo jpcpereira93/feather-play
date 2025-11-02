@@ -6,17 +6,12 @@ import { useSpotifyPlayerContext } from "~/play/core/context";
 import { Player } from "./Player";
 
 export const SpotifyPlayer = React.memo(() => {
-  const spotifyPlayerContext = useSpotifyPlayerContext();
+  const { deviceId, player } = useSpotifyPlayerContext();
 
   return (
     <div className="h-35 w-full">
       <Box>
-        {spotifyPlayerContext?.player && spotifyPlayerContext?.deviceId && (
-          <Player
-            deviceId={spotifyPlayerContext.deviceId}
-            player={spotifyPlayerContext.player}
-          />
-        )}
+        {player && deviceId && <Player deviceId={deviceId} player={player} />}
       </Box>
     </div>
   );

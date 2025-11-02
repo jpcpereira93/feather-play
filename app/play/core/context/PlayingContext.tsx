@@ -7,7 +7,8 @@ interface IPlayingContext {
   setIsPlaying: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export const PlayingContext = createContext<IPlayingContext | null>(null);
+// biome-ignore lint/suspicious/noExplicitAny: Avoid undefined type-check
+export const PlayingContext = createContext<IPlayingContext>({} as any);
 
 export function PlayingProvider({ children }: { children: React.ReactNode }) {
   const [currentTrackId, setCurrentTrackId] = useState<string>();
@@ -23,5 +24,11 @@ export function PlayingProvider({ children }: { children: React.ReactNode }) {
 }
 
 export function usePlayingContext() {
-  return useContext(PlayingContext);
+  const context = useContext(PlayingContext);
+
+  if (context === undefined) {
+    throw new Error("usePlayingContext must be within PlayingProvider");
+  }
+
+  return context;
 }
