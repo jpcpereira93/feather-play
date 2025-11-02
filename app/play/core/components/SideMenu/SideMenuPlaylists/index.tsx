@@ -1,22 +1,43 @@
 import { useMemo } from "react";
 
 import { useGetCurrentSpotifyUserPlaylistsQuery } from "~/play/core/hooks";
-import { getPlaceholderArray, getSpotifyItemImageUrl } from "~/play/core/utils";
+import {
+  getPlaceholderArray,
+  getSpotifyItemImageUrl,
+  handleInfiniteScroll,
+} from "~/play/core/utils";
 
 import { SideMenuTab, SideMenuTabSkeleton } from "../SideMenuTab";
 
 export const SideMenuPlaylists = () => {
-  const { data: userPlaylists, isLoading: isLoadingUserPlaylists } =
-    useGetCurrentSpotifyUserPlaylistsQuery();
+  const {
+    data: userPlaylists,
+    fetchNextPage: fetchUserPlaylistsNextPage,
+    isFetchingNextPage: isFetchingUserPlaylistsNextPage,
+    isLoading: isLoadingPlaylists,
+  } = useGetCurrentSpotifyUserPlaylistsQuery();
 
   const placeholder = useMemo(() => getPlaceholderArray(20), []);
 
-  if (isLoadingUserPlaylists || !userPlaylists) {
+  const onScroll = (event: React.UIEvent<HTMLUListElement>) => {
+    handleInfiniteScroll(event, loadMore, 100);
+  };
+
+  const loadMore = () => {
+    if (!isFetchingUserPlaylistsNextPage) {
+      fetchUserPlaylistsNextPage();
+    }
+  };
+
+  if (isLoadingPlaylists || !userPlaylists) {
     return placeholder.map((value) => <SideMenuTabSkeleton key={value} />);
   }
 
   return (
-    <ul className="flex flex-col h-full px-2 gap-2 overflow-scroll">
+    <ul
+      className="flex flex-col h-full px-2 gap-2 overflow-scroll"
+      onScroll={onScroll}
+    >
       {userPlaylists.items.map(({ id, images, name }) => (
         <SideMenuTab key={id} to={`/play/playlists/${id}`}>
           <div className="h-6 w-6 rounded overflow-hidden">

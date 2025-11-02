@@ -56,12 +56,12 @@ export const SpotifyPlayableListTable = ({
 }: SpotifyPlayableListTableProps & SpotifyPlayableListTableBaseProps) => {
   const { currentTrackId, isPlaying } = usePlayingContext();
 
-  const handleScroll = (event: React.UIEvent<HTMLDivElement>) => {
+  const onScroll = (event: React.UIEvent<HTMLDivElement>) => {
     handleInfiniteScroll(event, onEndReached, 200);
   };
 
   return (
-    <div className="overflow-auto" onScroll={handleScroll}>
+    <div className="overflow-auto" onScroll={onScroll}>
       <table className="w-full">
         <SpotifyPlayableListTableHead hasAlbum={hasAlbum} />
         <tbody>
