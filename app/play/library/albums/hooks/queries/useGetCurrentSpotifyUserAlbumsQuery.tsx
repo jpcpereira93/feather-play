@@ -1,9 +1,12 @@
 import { useQuery } from "@tanstack/react-query";
 
-import { getCurrentSpotifyUserAlbums } from "~/play/core/services";
+import { useSpotifyApiContext } from "~/play/core/context";
 
-export const useGetCurrentSpotifyUserAlbumsQuery = () =>
-  useQuery({
+export const useGetCurrentSpotifyUserAlbumsQuery = () => {
+  const { spotifyApi } = useSpotifyApiContext();
+
+  return useQuery({
     queryKey: ["spotifyUserAlbums"],
-    queryFn: getCurrentSpotifyUserAlbums,
+    queryFn: async () => await spotifyApi.currentUser.albums.savedAlbums(),
   });
+};

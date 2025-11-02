@@ -36,5 +36,15 @@
       "subtitle": "Feather weight Spotify client."
     }
   },
+  "login": {
+    "description": "In order to process you have to provide your Spotify ClientId.\nFor more information check out the Setup Guide.",
+    "form": {
+      "client_id": {
+        "placeholder": "Insert your Client Id.."
+      },
+      "submit": "Confirm"
+    },
+    "title": "Login"
+  },
   "navbar": { "faq": "FAQ", "login": "Login", "setup_guide": "Setup Guide" }
 }
