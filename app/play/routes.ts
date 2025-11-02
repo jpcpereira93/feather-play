@@ -17,5 +17,6 @@ export const playRoutes = [
   ]),
   route("liked-songs", "play/liked-songs/page.tsx"),
   route("albums/:albumId", "play/album/page.tsx"),
+  route("artists/:artistId", "play/artist/page.tsx"),
   route("playlists/:playlistId", "play/playlist/page.tsx"),
 ] satisfies RouteConfig;
