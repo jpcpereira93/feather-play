@@ -61,7 +61,7 @@ export const SearchBar = () => {
 
   return (
     <div
-      className="relative bg-dark-700 p-2 rounded-lg min-w-sm flex items-center gap-2 text-sm font-semibold 
+      className="relative bg-dark-700 p-2 rounded-lg max-w-xs sm:min-w-sm flex items-center gap-2 text-sm font-semibold 
 "
     >
       <Search />

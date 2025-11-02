@@ -13,14 +13,16 @@ export const SideMenu = () => {
     <Box>
       <div className="flex flex-col gap-3 h-full py-4">
         <ul className="flex flex-col gap-2 mx-2">
-          <SideMenuTab to="/play/library">
-            <Library />
-            {t("side_menu.tabs.library")}
-          </SideMenuTab>
-          <SideMenuTab to="/play/liked-songs">
-            <Heart />
-            {t("side_menu.tabs.liked_songs")}
-          </SideMenuTab>
+          <SideMenuTab
+            icon={<Library />}
+            label={t("side_menu.tabs.library")}
+            to="/play/library"
+          />
+          <SideMenuTab
+            icon={<Heart />}
+            label={t("side_menu.tabs.liked_songs")}
+            to="/play/liked-songs"
+          ></SideMenuTab>
         </ul>
         <div className="px-6">
           <span className="flex h-[2px] w-full bg-dark-600"></span>
