@@ -1,7 +1,10 @@
 import { useInfiniteQuery } from "@tanstack/react-query";
 
 import { useSpotifyApiContext } from "~/play/core/context";
-import { selectItemsFromInfinitePages } from "~/play/core/utils";
+import {
+  getNextPageParam,
+  selectItemsFromInfinitePages,
+} from "~/play/core/utils";
 
 export const useGetCurrentSpotifyUserLikedSongsQuery = () => {
   const { spotifyApi } = useSpotifyApiContext();
@@ -11,8 +14,7 @@ export const useGetCurrentSpotifyUserLikedSongsQuery = () => {
     queryFn: async ({ pageParam }) =>
       await spotifyApi.currentUser.tracks.savedTracks(20, pageParam),
     initialPageParam: 0,
-    getNextPageParam: (lastPage) =>
-      lastPage.next ? lastPage.offset + lastPage.limit : null,
+    getNextPageParam: getNextPageParam,
     select: selectItemsFromInfinitePages,
   });
 };

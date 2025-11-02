@@ -1,7 +1,10 @@
 import { useInfiniteQuery } from "@tanstack/react-query";
 
 import { useSpotifyApiContext } from "~/play/core/context";
-import { selectItemsFromInfinitePages } from "~/play/core/utils";
+import {
+  getNextPageParam,
+  selectItemsFromInfinitePages,
+} from "~/play/core/utils";
 
 export const useGetSpotifyPlaylistItemsQuery = (playlistId: string) => {
   const { spotifyApi } = useSpotifyApiContext();
@@ -17,8 +20,7 @@ export const useGetSpotifyPlaylistItemsQuery = (playlistId: string) => {
         pageParam,
       ),
     initialPageParam: 0,
-    getNextPageParam: (lastPage) =>
-      lastPage.next ? lastPage.offset + lastPage.limit : null,
+    getNextPageParam: getNextPageParam,
     select: selectItemsFromInfinitePages,
   });
 };
