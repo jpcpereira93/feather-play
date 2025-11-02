@@ -1,9 +1,22 @@
 import { useQuery } from "@tanstack/react-query";
 
-import { getSpotifyAlbum } from "~/play/core/services";
+import { useSpotifyApiContext } from "~/play/core/context";
 
-export const useGetSpotifyAlbumQuery = (albumId: string) =>
-  useQuery({
+export const useGetSpotifyAlbumQuery = (albumId: string) => {
+  const { spotifyApi } = useSpotifyApiContext();
+
+  return useQuery({
     queryKey: ["spotifyAlbum", albumId],
-    queryFn: () => getSpotifyAlbum(albumId),
+    queryFn: async () => {
+      const album = await spotifyApi.albums.get(albumId);
+
+      return {
+        ...album,
+        tracks: {
+          ...album.tracks,
+          items: album.tracks.items.map((track) => ({ track })),
+        },
+      };
+    },
   });
+};

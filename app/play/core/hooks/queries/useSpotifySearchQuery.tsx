@@ -1,10 +1,13 @@
 import { useQuery } from "@tanstack/react-query";
 
-import { searchSpotify } from "~/play/core/services";
+import { useSpotifyApiContext } from "~/play/core/context";
 
-export const useSpotifySearchQuery = (searchTerm?: string | null) =>
-  useQuery({
+export const useSpotifySearchQuery = (searchTerm?: string | null) => {
+  const { spotifyApi } = useSpotifyApiContext();
+
+  return useQuery({
     queryKey: ["spotifySearch", searchTerm],
-    queryFn: () => searchSpotify(searchTerm ?? ""),
+    queryFn: async () => await spotifyApi.search(searchTerm ?? "", ["track"]),
     enabled: !!searchTerm && searchTerm.length > 0,
   });
+};

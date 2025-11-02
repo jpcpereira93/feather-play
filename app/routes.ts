@@ -3,12 +3,14 @@ import {
   layout,
   prefix,
   type RouteConfig,
+  route,
 } from "@react-router/dev/routes";
 
 import { playRoutes } from "./play/routes";
 
 export default [
-  index("home/page.tsx"),
+  layout("site/layout.tsx", [index("site/page.tsx")]),
+  route("login", "site/login/page.tsx"),
   ...prefix("play", [
     layout("play/layout.tsx", [index("play/page.tsx"), ...playRoutes]),
   ]),

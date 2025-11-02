@@ -1,10 +1,12 @@
 import { useMutation } from "@tanstack/react-query";
 
-import { toggleSpotifyShuffleMode } from "~/play/core/services";
+import { useSpotifyApiContext } from "~/play/core/context";
 
 export const useToggleSpotifyShuffleModeMutation = () => {
+  const { spotifyApi } = useSpotifyApiContext();
+
   return useMutation({
     mutationFn: async (isShuffleMode: boolean) =>
-      await toggleSpotifyShuffleMode(isShuffleMode),
+      await spotifyApi.player.togglePlaybackShuffle(!isShuffleMode),
   });
 };

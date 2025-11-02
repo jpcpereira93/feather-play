@@ -1,14 +1,14 @@
 {
-  "name": "@jpcpereira93/spotify-client",
+  "name": "@jpcpereira93/feather-play",
   "private": true,
   "version": "0.0.1",
   "type": "module",
-  "description": "A custom Spotify Client using React Router v7.",
+  "description": "A custom lightweight Spotify Client using React Router v7.",
   "author": "José Pereira",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jpcpereira93/spotify-client.git"
+    "url": "https://github.com/jpcpereira93/spotify-client.git"
   },
   "homepage": "https://github.com/jpcpereira93/spotify-client#readme",
   "scripts": {
@@ -48,12 +48,13 @@
     "@types/react": "^19.1.13",
     "@types/react-dom": "^19.1.9",
     "@vitejs/plugin-react": "^5.1.0",
-    "happy-dom": "^20.0.8",
+    "happy-dom": "^20.0.10",
     "husky": "^9.1.7",
     "lint-staged": "^16.2.6",
     "tailwindcss": "^4.1.13",
     "typescript": "^5.9.2",
     "vite": "^7.1.7",
+    "vite-plugin-svgr": "^4.5.0",
     "vite-tsconfig-paths": "^5.1.4",
     "vitest": "^4.0.4"
   },
