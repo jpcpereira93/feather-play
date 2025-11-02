@@ -9,10 +9,20 @@ import { useGetCurrentSpotifyUserLikedSongsQuery } from "./hooks";
 export default function LikedSongs() {
   const { t } = useTranslation();
 
-  const { data: likedSongs, isLoading: isLoadingLikedSongs } =
-    useGetCurrentSpotifyUserLikedSongsQuery();
+  const {
+    data: likedSongs,
+    fetchNextPage: fetchLikedSongsNextPage,
+    isLoading: isLoadingLikedSongs,
+    isFetchingNextPage: isFetchingLikedSongsNextPage,
+  } = useGetCurrentSpotifyUserLikedSongsQuery();
   const { data: userProfile, isLoading: isLoadingUserProfile } =
     useGetCurrentSpotifyUserProfileQuery();
+
+  const onLoadMore = () => {
+    if (!isFetchingLikedSongsNextPage) {
+      fetchLikedSongsNextPage();
+    }
+  };
 
   if (
     isLoadingLikedSongs ||
@@ -36,8 +46,10 @@ export default function LikedSongs() {
       ]}
       uri={`${userProfile.uri}:collection`}
       name={t("liked_songs.title")}
+      onLoadMore={onLoadMore}
       owner={userProfile.display_name}
-      tracks={likedSongs}
+      tracks={likedSongs.items}
+      total={likedSongs.total}
       type="playlist"
     />
   );

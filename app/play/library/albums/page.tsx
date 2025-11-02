@@ -13,8 +13,12 @@ import {
 import { useGetCurrentSpotifyUserAlbumsQuery } from "./hooks";
 
 export default function Albums() {
-  const { data: albums, isLoading: isLoadingAlbums } =
-    useGetCurrentSpotifyUserAlbumsQuery();
+  const {
+    data: albums,
+    isFetchingNextPage: isFetchingAlbumsNextPage,
+    isLoading: isLoadingAlbums,
+    fetchNextPage: fetchAlbumsNextPage,
+  } = useGetCurrentSpotifyUserAlbumsQuery();
 
   const getAlbumDescription = useCallback(
     (artists: Artist[], releaseDate: string) => {
@@ -23,17 +27,23 @@ export default function Albums() {
     [],
   );
 
+  const onLoadMore = () => {
+    if (!isFetchingAlbumsNextPage) {
+      fetchAlbumsNextPage();
+    }
+  };
+
   if (isLoadingAlbums || !albums) {
     return <LibraryCarouselSkeleton />;
   }
 
   return (
-    <LibraryCarousel>
+    <LibraryCarousel onLoadMore={onLoadMore}>
       {albums.items.map(({ album }) => {
         const { id, images, name, artists, release_date } = album;
 
         return (
-          <NavLink key={id} to={`/play/albums/${id}`}>
+          <NavLink key={id} to={`/play/albums/${id}`} prefetch="intent">
             <LibraryCard
               img={getSpotifyItemImageUrl(images)}
               key={id}

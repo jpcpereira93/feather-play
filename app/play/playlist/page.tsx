@@ -5,19 +5,39 @@ import {
 
 import type { Route } from "./+types/page";
 
-import { useGetSpotifyPlaylistQuery } from "./hooks";
+import {
+  useGetSpotifyPlaylistItemsQuery,
+  useGetSpotifyPlaylistQuery,
+} from "./hooks";
 
 export default function Playlist({ params }: Route.ComponentProps) {
   const { playlistId } = params;
 
   const { data: playlist, isLoading: isLoadingPlaylist } =
     useGetSpotifyPlaylistQuery(playlistId);
+  const {
+    data: playlistTracks,
+    fetchNextPage: fetchPlaylistTracksNextPage,
+    isFetchingNextPage: isFetchingPlaylistTracksNextPage,
+    isLoading: isLoadingPlaylistTracks,
+  } = useGetSpotifyPlaylistItemsQuery(playlistId);
 
-  if (isLoadingPlaylist || !playlist) {
+  const onLoadMore = () => {
+    if (!isFetchingPlaylistTracksNextPage) {
+      fetchPlaylistTracksNextPage();
+    }
+  };
+
+  if (
+    isLoadingPlaylist ||
+    isLoadingPlaylistTracks ||
+    !playlist ||
+    !playlistTracks
+  ) {
     return <SpotifyPlayableListSkeleton hasAlbum />;
   }
 
-  const { description, images, name, owner, tracks, type, uri } = playlist;
+  const { description, images, name, owner, type, uri } = playlist;
 
   return (
     <SpotifyPlayableList
@@ -25,8 +45,10 @@ export default function Playlist({ params }: Route.ComponentProps) {
       description={description}
       images={images}
       name={name}
+      onLoadMore={onLoadMore}
       owner={owner.display_name}
-      tracks={tracks}
+      total={playlistTracks.total}
+      tracks={playlistTracks.items}
       type={type}
       uri={uri}
     />

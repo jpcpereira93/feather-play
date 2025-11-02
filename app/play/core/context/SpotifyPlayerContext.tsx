@@ -6,8 +6,8 @@ interface ISpotifyPlayerContext {
   deviceId?: string;
 }
 
-export const SpotifyPlayerContext = createContext<ISpotifyPlayerContext | null>(
-  null,
+export const SpotifyPlayerContext = createContext<ISpotifyPlayerContext>(
+  {} as any,
 );
 
 export function SpotifyPlayerProvider({
@@ -72,5 +72,13 @@ export function SpotifyPlayerProvider({
 }
 
 export function useSpotifyPlayerContext() {
-  return useContext(SpotifyPlayerContext);
+  const context = useContext(SpotifyPlayerContext);
+
+  if (context === undefined) {
+    throw new Error(
+      "useSpotifyPlayerContext must be within SpotifyPlayerProvider",
+    );
+  }
+
+  return context;
 }

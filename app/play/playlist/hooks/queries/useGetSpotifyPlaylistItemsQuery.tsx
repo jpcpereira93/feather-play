@@ -6,13 +6,19 @@ import {
   selectItemsFromInfinitePages,
 } from "~/play/core/utils";
 
-export const useGetCurrentSpotifyUserPlaylistsQuery = () => {
+export const useGetSpotifyPlaylistItemsQuery = (playlistId: string) => {
   const { spotifyApi } = useSpotifyApiContext();
 
   return useInfiniteQuery({
-    queryKey: ["spotifyUserPlaylists"],
+    queryKey: ["spotifyPlaylistItems", playlistId],
     queryFn: async ({ pageParam }) =>
-      await spotifyApi.currentUser.playlists.playlists(20, pageParam),
+      await spotifyApi.playlists.getPlaylistItems(
+        playlistId,
+        undefined,
+        undefined,
+        20,
+        pageParam,
+      ),
     initialPageParam: 0,
     getNextPageParam: getNextPageParam,
     select: selectItemsFromInfinitePages,

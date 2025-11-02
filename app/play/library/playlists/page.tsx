@@ -9,17 +9,27 @@ import {
 } from "~/play/library/components";
 
 export default function Library() {
-  const { data: userPlaylists, isLoading: isLoadingPlaylists } =
-    useGetCurrentSpotifyUserPlaylistsQuery();
+  const {
+    data: userPlaylists,
+    fetchNextPage: fetchUserPlaylistsNextPage,
+    isFetchingNextPage: isFetchingUserPlaylistsNextPage,
+    isLoading: isLoadingPlaylists,
+  } = useGetCurrentSpotifyUserPlaylistsQuery();
+
+  const onLoadMore = () => {
+    if (!isFetchingUserPlaylistsNextPage) {
+      fetchUserPlaylistsNextPage();
+    }
+  };
 
   if (isLoadingPlaylists || !userPlaylists) {
     return <LibraryCarouselSkeleton />;
   }
 
   return (
-    <LibraryCarousel>
+    <LibraryCarousel onLoadMore={onLoadMore}>
       {userPlaylists.items.map(({ description, id, images, name }) => (
-        <NavLink key={id} to={`/play/playlists/${id}`}>
+        <NavLink key={id} to={`/play/playlists/${id}`} prefetch="intent">
           <LibraryCard
             img={getSpotifyItemImageUrl(images)}
             subtitle={description}
