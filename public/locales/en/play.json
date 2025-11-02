@@ -1,4 +1,19 @@
 {
+  "album": {
+    "type": {
+      "album": "Album",
+      "single": "Single"
+    }
+  },
+  "artist": {
+    "albums": {
+      "title": "Albums"
+    },
+    "followers": "{{count}} followers",
+    "top_tracks": {
+      "title": "Top Tracks"
+    }
+  },
   "library": {
     "tabs": {
       "albums": "Albums",
