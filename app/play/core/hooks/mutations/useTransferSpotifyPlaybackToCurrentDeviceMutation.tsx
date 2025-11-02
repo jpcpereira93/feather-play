@@ -1,12 +1,14 @@
 import { useMutation } from "@tanstack/react-query";
 
-import { transferSpotifyPlaybackToCurrentDevice } from "~/play/core/services";
+import { useSpotifyApiContext } from "~/play/core/context";
 
 export const useTransferSpotifyPlaybackToCurrentDeviceMutation = (
   deviceId: string,
 ) => {
+  const { spotifyApi } = useSpotifyApiContext();
+
   return useMutation({
     mutationFn: async () =>
-      await transferSpotifyPlaybackToCurrentDevice(deviceId),
+      await spotifyApi.player.transferPlayback([deviceId]),
   });
 };

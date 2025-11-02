@@ -1,9 +1,12 @@
 import { useQuery } from "@tanstack/react-query";
 
-import { getCurrentSpotifyUserProfile } from "~/play/core/services";
+import { useSpotifyApiContext } from "~/play/core/context";
 
-export const useGetCurrentSpotifyUserProfileQuery = () =>
-  useQuery({
+export const useGetCurrentSpotifyUserProfileQuery = () => {
+  const { spotifyApi } = useSpotifyApiContext();
+
+  return useQuery({
     queryKey: ["spotifyUserProfile"],
-    queryFn: getCurrentSpotifyUserProfile,
+    queryFn: async () => await spotifyApi.currentUser.profile(),
   });
+};

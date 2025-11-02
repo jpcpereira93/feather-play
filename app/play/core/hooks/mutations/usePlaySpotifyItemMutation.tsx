@@ -1,10 +1,12 @@
 import { useMutation } from "@tanstack/react-query";
 
-import { playSpotifyItem } from "~/play/core/services";
+import { useSpotifyApiContext } from "~/play/core/context";
 
 export const usePlaySpotifyItemMutation = () => {
+  const { spotifyApi } = useSpotifyApiContext();
+
   return useMutation({
     mutationFn: async ({ uri, uris }: { uri?: string; uris?: string[] }) =>
-      await playSpotifyItem(uri, uris),
+      await spotifyApi.player.startResumePlayback("", uri, uris),
   });
 };

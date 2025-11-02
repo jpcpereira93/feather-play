@@ -1,9 +1,16 @@
 import { useQuery } from "@tanstack/react-query";
 
-import { getCurrentSpotifyUserFollowedArtists } from "~/play/core/services";
+import { useSpotifyApiContext } from "~/play/core/context";
 
-export const useGetCurrentSpotifyUserFollowedArtistsQuery = () =>
-  useQuery({
+export const useGetCurrentSpotifyUserFollowedArtistsQuery = () => {
+  const { spotifyApi } = useSpotifyApiContext();
+
+  return useQuery({
     queryKey: ["spotifyUserFollowedArtists"],
-    queryFn: getCurrentSpotifyUserFollowedArtists,
+    queryFn: async () => {
+      const { artists } = await spotifyApi.currentUser.followedArtists();
+
+      return artists;
+    },
   });
+};
