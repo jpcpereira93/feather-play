@@ -9,6 +9,18 @@ interface ArtistItemProps {
   uri: string;
 }
 
+export const ArtistItemSkeleton = React.memo(() => (
+  <li className="p-2 text-sm grid items-center grid-cols-[40px_1fr] gap-2 text-transparent">
+    <div className="h-[40px] rounded-lg bg-dark-600"></div>
+    <div className="flex flex-col gap-1">
+      <p className="font-bold rounded-lg bg-dark-600 w-fit h-[14px]">
+        Title 12345
+      </p>
+      <p className="text-xs rounded-lg bg-dark-600 w-fit h-[12px]">Subtitle</p>
+    </div>
+  </li>
+));
+
 export const ArtistItem = React.memo(
   ({ image, onArtistItemClick, subtitle, title, uri }: ArtistItemProps) => {
     const onClick = () => {
