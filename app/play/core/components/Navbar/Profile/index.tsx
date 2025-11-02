@@ -2,14 +2,17 @@ import { SquareArrowOutUpRight } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router";
+
 import { IconButton } from "~/play/core/components/IconButton";
-import { logout } from "~/play/core/services";
+import { useSpotifyApiContext } from "~/play/core/context";
 import { debounce } from "~/play/core/utils";
+
 import { Avatar } from "../Avatar";
 import { ProfileItem } from "./ProfileItem";
 
 export const Profile = () => {
   const { t } = useTranslation();
+  const { spotifyApi } = useSpotifyApiContext();
 
   const navigate = useNavigate();
 
@@ -28,7 +31,9 @@ export const Profile = () => {
   const onLogout = () => {
     window.removeEventListener("click", onOutsideClick);
 
-    logout();
+    spotifyApi.logOut();
+
+    localStorage.removeItem("spotifyClientId");
 
     setIsMenuOpen(false);
 
