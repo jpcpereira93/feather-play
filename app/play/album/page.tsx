@@ -26,7 +26,8 @@ export default function Album({ params }: Route.ComponentProps) {
       images={images}
       name={name}
       owner={getArtistsString(artists)}
-      tracks={tracks}
+      total={tracks.total}
+      tracks={tracks.items}
       type={type}
       uri={uri}
     />
