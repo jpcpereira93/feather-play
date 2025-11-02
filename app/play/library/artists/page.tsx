@@ -1,4 +1,5 @@
 import { useCallback } from "react";
+import { NavLink } from "react-router";
 
 import { getSpotifyItemImageUrl } from "~/play/core/utils";
 
@@ -26,12 +27,14 @@ export default function Artists() {
   return (
     <LibraryCarousel>
       {artists.items.map(({ followers, id, images, name }) => (
-        <LibraryCard
-          img={getSpotifyItemImageUrl(images)}
-          key={id}
-          title={name}
-          subtitle={getArtistDescription(followers.total)}
-        />
+        <NavLink key={id} to={`/play/artists/${id}`} prefetch="intent">
+          <LibraryCard
+            img={getSpotifyItemImageUrl(images)}
+            key={id}
+            title={name}
+            subtitle={getArtistDescription(followers.total)}
+          />
+        </NavLink>
       ))}
     </LibraryCarousel>
   );
