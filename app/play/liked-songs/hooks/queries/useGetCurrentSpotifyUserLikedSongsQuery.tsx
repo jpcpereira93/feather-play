@@ -1,9 +1,12 @@
 import { useQuery } from "@tanstack/react-query";
 
-import { getCurrentSpotifyUserLikedSongs } from "~/play/core/services";
+import { useSpotifyApiContext } from "~/play/core/context";
 
-export const useGetCurrentSpotifyUserLikedSongsQuery = () =>
-  useQuery({
+export const useGetCurrentSpotifyUserLikedSongsQuery = () => {
+  const { spotifyApi } = useSpotifyApiContext();
+
+  return useQuery({
     queryKey: ["spotifyUserLikedSongs"],
-    queryFn: getCurrentSpotifyUserLikedSongs,
+    queryFn: async () => await spotifyApi.currentUser.tracks.savedTracks(),
   });
+};
