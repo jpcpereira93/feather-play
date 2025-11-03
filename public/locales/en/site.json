@@ -46,5 +46,12 @@
     },
     "title": "Login"
   },
-  "navbar": { "faq": "FAQ", "login": "Login", "setup_guide": "Setup Guide" }
+  "navbar": { "faq": "FAQ", "login": "Login", "setup_guide": "Setup Guide" },
+  "setup_guide": {
+    "side_menu": {
+      "overview": "Overview",
+      "requirements": "Requirements",
+      "setting_up": "Setting up"
+    }
+  }
 }
