@@ -13,9 +13,14 @@ export const SiteNavbar = () => {
     <nav className="sticky w-full p-2 flex items-center justify-between bg-dark-900">
       <NavLink to="/">
         <button
-          className="text-slate-200 tracking-tighter font-black uppercase text-lg hover:cursor-pointer"
+          className="flex items-center text-slate-200 tracking-tighter font-black uppercase text-lg hover:cursor-pointer"
           type="button"
         >
+          <img
+            className="h-6 w-6"
+            src="/logos/feather-play-logo.png"
+            alt="FeatherPlay"
+          ></img>
           FeatherPlay
         </button>
       </NavLink>

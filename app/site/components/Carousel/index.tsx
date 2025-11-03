@@ -101,7 +101,11 @@ export const Carousel = ({ images }: CarouselProps) => {
           { "animate-move-in-right": animateRight },
         )}
       >
-        <img src={currentImages[2].src} alt={currentImages[2].label} />
+        <img
+          src={currentImages[2].src}
+          alt={currentImages[2].label}
+          fetchPriority="high"
+        />
       </div>
       <div
         className={classNames(
