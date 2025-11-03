@@ -3,14 +3,14 @@
   "private": true,
   "version": "0.0.1",
   "type": "module",
-  "description": "A custom lightweight Spotify Client using React Router v7.",
+  "description": "A custom feather-weight, debloated Spotify Client.",
   "author": "José Pereira",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/jpcpereira93/spotify-client.git"
+    "url": "https://github.com/jpcpereira93/feather-play.git"
   },
-  "homepage": "https://github.com/jpcpereira93/spotify-client#readme",
+  "homepage": "https://github.com/jpcpereira93/feather-play#readme",
   "scripts": {
     "build": "react-router build",
     "dev": "react-router dev",
