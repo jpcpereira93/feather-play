@@ -1,4 +1,5 @@
 import { Trans, useTranslation } from "react-i18next";
+import { NavLink } from "react-router";
 
 export default function SetupGuideRequirements() {
   const { t } = useTranslation("site");
@@ -13,6 +14,12 @@ export default function SetupGuideRequirements() {
           ns="site"
           i18nKey="setup_guide.setting_up.content"
           components={{
+            "requirements-link": (
+              <NavLink
+                className="font-semibold underline"
+                to="/setup-guide/requirements"
+              />
+            ),
             "spotify-dashboard-link": (
               // biome-ignore lint/a11y/useAnchorContent: a11y
               <a
