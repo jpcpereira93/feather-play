@@ -21,7 +21,7 @@ export const SiteNavbar = () => {
       </NavLink>
       <div className="flex items-center justify-end gap-4">
         <SiteNavbarButton label={t("navbar.setup_guide")} to="/setup-guide" />
-        <SiteNavbarButton label={t("navbar.faq")} to="" />
+        <SiteNavbarButton label={t("navbar.faq")} to="/faq" />
         <NavLink to="login">
           <button
             className="bg-brand-600 text-slate-100 px-3 py-1 rounded-md font-black uppercase hover:bg-brand-500 hover:cursor-pointer"

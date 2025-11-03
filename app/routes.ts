@@ -19,6 +19,7 @@ export default [
         route("setting-up", "site/setup-guide/setting-up/page.tsx"),
       ]),
     ]),
+    route("faq", "site/faq/page.tsx"),
   ]),
   route("login", "site/login/page.tsx"),
   ...prefix("play", [
