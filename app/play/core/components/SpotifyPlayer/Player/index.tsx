@@ -19,7 +19,7 @@ import {
   useTransferSpotifyPlaybackToCurrentDeviceMutation,
 } from "~/play/core/hooks";
 import type { ISpotifyPlayerState } from "~/play/core/models";
-
+import { getArtistsString } from "~/play/core/utils";
 import { PlayerButton } from "../PlayerButton";
 import { PlayerVolume } from "../PlayerVolume";
 import { TrackProgress } from "../TrackProgress";
@@ -31,8 +31,15 @@ interface PlayerProps {
 }
 
 export const Player = ({ deviceId, player }: PlayerProps) => {
-  const { currentTrackId, setCurrentTrackId, setIsPlaying } =
-    usePlayingContext();
+  const {
+    currentTrackArtists,
+    currentTrackId,
+    currentTrackName,
+    setCurrentTrackArtists,
+    setCurrentTrackId,
+    setCurrentTrackName,
+    setIsPlaying,
+  } = usePlayingContext();
 
   const { data: hasCurrentTracksSaved, refetch: refetchHasCurrentTracksSaved } =
     useHasCurrentSpotifyUserSavedTracksQuery(
@@ -55,8 +62,6 @@ export const Player = ({ deviceId, player }: PlayerProps) => {
     useToggleSpotifyShuffleModeMutation();
 
   const [albumImage, setAlbumImage] = useState<string>();
-  const [currentTrackArtists, setCurrentTrackArtists] = useState<string>();
-  const [currentTrackName, setCurrentTrackName] = useState<string>();
   const [isPaused, setIsPaused] = useState<boolean>(true);
   const [isRepeatMode, setIsRepeatMode] = useState<boolean>(false);
   const [isShuffleMode, setIsShuffleMode] = useState<boolean>(false);
@@ -69,11 +74,13 @@ export const Player = ({ deviceId, player }: PlayerProps) => {
   }: ISpotifyPlayerState) => {
     const { album, artists, id, name } = current_track;
 
+    const artistString = getArtistsString(artists);
+
     setCurrentTrackId(id);
     setIsPlaying(!paused);
 
     setAlbumImage(album.images.at(0)?.url);
-    setCurrentTrackArtists(artists.map(({ name }) => name).join(" & "));
+    setCurrentTrackArtists(artistString);
     setCurrentTrackName(name);
     setIsPaused(paused);
     setIsRepeatMode(!!repeat_mode);
@@ -94,10 +101,12 @@ export const Player = ({ deviceId, player }: PlayerProps) => {
   }, [player]);
 
   const onLikeClick = () => {
-    if (isCurrentPlayingTrackSaved) {
-      mutateRemoveSavedSpotifyTracks([currentTrackId]);
-    } else {
-      mutateSaveSpotifyTracks([currentTrackId]);
+    if (currentTrackId) {
+      if (isCurrentPlayingTrackSaved) {
+        mutateRemoveSavedSpotifyTracks([currentTrackId]);
+      } else {
+        mutateSaveSpotifyTracks([currentTrackId]);
+      }
     }
 
     setTimeout(() => {

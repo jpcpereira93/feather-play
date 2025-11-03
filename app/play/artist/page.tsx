@@ -1,6 +1,9 @@
+import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 
 import { useGetSpotifyArtistQuery } from "~/play/artist/hooks";
+
+import { useDocumentTitle } from "~/play/core/hooks";
 import { getSpotifyItemImageUrl } from "~/play/core/utils";
 
 import type { Route } from "./+types/page";
@@ -9,10 +12,22 @@ import { ArtistAlbums, ArtistTopTracks } from "./components";
 
 export default function Artist({ params }: Route.ComponentProps) {
   const { artistId } = params;
+
   const { t } = useTranslation();
+  const { setTitle } = useDocumentTitle();
 
   const { data: artist, isLoading: isLoadingArtist } =
     useGetSpotifyArtistQuery(artistId);
+
+  useEffect(() => {
+    if (artist) {
+      setTitle(
+        t("title.artist", {
+          artist: artist.name,
+        }),
+      );
+    }
+  }, [artist, setTitle, t]);
 
   return (
     <div className="h-full w-full grid grid-rows-[250px_1fr]">

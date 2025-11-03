@@ -11,6 +11,16 @@ import {
 
 import type { Route } from "./+types/layout";
 
+export function meta() {
+  return [
+    { title: "FeatherPlay - Web player: The feather weight Spotify Client" },
+    {
+      name: "description",
+      content: "FeatherPlay - Web player: The feather weight Spotify Client",
+    },
+  ];
+}
+
 export function shouldRevalidate() {
   return false;
 }
@@ -45,7 +55,7 @@ export default function PlayLayout({ loaderData }: Route.ComponentProps) {
               <Navbar />
               <main className="flex flex-col h-full w-full gap-2 overflow-hidden">
                 <div className="flex h-full gap-2 overflow-hidden">
-                  <div className="w-1/3 xl:w-1/4">
+                  <div className="w-fit md:w-1/3 xl:w-1/4">
                     <SideMenu />
                   </div>
                   <Box>

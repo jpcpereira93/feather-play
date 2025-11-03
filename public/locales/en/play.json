@@ -58,5 +58,12 @@
       "library": "Your Library",
       "liked_songs": "Liked Songs"
     }
+  },
+  "title": {
+    "album": "{{album}} - Album by {{artist}} | FeatherPlay",
+    "artist": "{{artist}} | FeatherPlay",
+    "default": "FeatherPlay - Web player: The feather weight Spotify Client",
+    "liked_songs": "Liked Songs | FeatherPlay",
+    "playlist": "{{playlist}} - playlist by {{owner}} | FeatherPlay"
   }
 }

@@ -1,13 +1,20 @@
+import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
+
 import {
   SpotifyPlayableList,
   SpotifyPlayableListSkeleton,
 } from "~/play/core/components";
-import { useGetCurrentSpotifyUserProfileQuery } from "~/play/core/hooks";
-import { useGetCurrentSpotifyUserLikedSongsQuery } from "./hooks";
+import {
+  useDocumentTitle,
+  useGetCurrentSpotifyUserProfileQuery,
+} from "~/play/core/hooks";
+
+import { useGetCurrentSpotifyUserLikedSongsQuery } from "~/play/liked-songs/hooks";
 
 export default function LikedSongs() {
   const { t } = useTranslation();
+  const { setTitle } = useDocumentTitle();
 
   const {
     data: likedSongs,
@@ -17,6 +24,10 @@ export default function LikedSongs() {
   } = useGetCurrentSpotifyUserLikedSongsQuery();
   const { data: userProfile, isLoading: isLoadingUserProfile } =
     useGetCurrentSpotifyUserProfileQuery();
+
+  useEffect(() => {
+    setTitle(t("title.liked_songs"));
+  }, [setTitle, t]);
 
   const onLoadMore = () => {
     if (!isFetchingLikedSongsNextPage) {

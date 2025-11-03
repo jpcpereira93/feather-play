@@ -39,14 +39,18 @@ export const SideMenuPlaylists = () => {
       onScroll={onScroll}
     >
       {userPlaylists.items.map(({ id, images, name }) => (
-        <SideMenuTab key={id} to={`/play/playlists/${id}`}>
-          <div className="h-6 w-6 rounded overflow-hidden">
-            {images && images.length > 0 && (
-              <img src={getSpotifyItemImageUrl(images)} alt={name} />
-            )}
-          </div>
-          {name}
-        </SideMenuTab>
+        <SideMenuTab
+          icon={
+            <div className="h-6 w-6 rounded overflow-hidden">
+              {images && images.length > 0 && (
+                <img src={getSpotifyItemImageUrl(images)} alt={name} />
+              )}
+            </div>
+          }
+          key={id}
+          label={name}
+          to={`/play/playlists/${id}`}
+        />
       ))}
     </ul>
   );
