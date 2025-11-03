@@ -1,10 +1,13 @@
+import { useEffect } from "react";
+import { useTranslation } from "react-i18next";
+
 import {
   SpotifyPlayableList,
   SpotifyPlayableListSkeleton,
 } from "~/play/core/components";
+import { useDocumentTitle } from "~/play/core/hooks";
 
 import type { Route } from "./+types/page";
-
 import {
   useGetSpotifyPlaylistItemsQuery,
   useGetSpotifyPlaylistQuery,
@@ -12,6 +15,9 @@ import {
 
 export default function Playlist({ params }: Route.ComponentProps) {
   const { playlistId } = params;
+
+  const { setTitle } = useDocumentTitle();
+  const { t } = useTranslation();
 
   const { data: playlist, isLoading: isLoadingPlaylist } =
     useGetSpotifyPlaylistQuery(playlistId);
@@ -27,6 +33,17 @@ export default function Playlist({ params }: Route.ComponentProps) {
       fetchPlaylistTracksNextPage();
     }
   };
+
+  useEffect(() => {
+    if (playlist) {
+      setTitle(
+        t("title.playlist", {
+          playlist: playlist.name,
+          owner: playlist.owner.display_name,
+        }),
+      );
+    }
+  }, [playlist, setTitle, t]);
 
   if (
     isLoadingPlaylist ||

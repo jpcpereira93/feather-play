@@ -58,5 +58,10 @@
       "library": "Your Library",
       "liked_songs": "Liked Songs"
     }
+  },
+  "title": {
+    "album": "{{album}} - Album by {{artist}} | FeatherPlay",
+    "artist": "{{artist}} | FeatherPlay",
+    "playlist": "{{playlist}} - playlist by {{owner}} | FeatherPlay"
   }
 }
