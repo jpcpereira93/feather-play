@@ -87,7 +87,14 @@ export default function Home({ loaderData }: Route.ComponentProps) {
         <Carousel images={carouselImages} />
       </div>
       <section className="h-full w-full snap-center flex flex-col items-center p-20 gap-8">
-        <h1 className="text-3xl font-black">{t("home.about.title")}</h1>
+        <div className="flex items-center gap-2">
+          <h1 className="text-3xl font-black">{t("home.about.title")}</h1>
+          <img
+            className="h-20 w-20"
+            src="/logos/feather-play-logo.png"
+            alt="FeatherPlay"
+          ></img>
+        </div>
         <article className="w-2/3">
           <SiteBox rounded>
             <div>
@@ -124,7 +131,7 @@ export default function Home({ loaderData }: Route.ComponentProps) {
           <p className="text-dark-300/80 italic font-semibold">
             {t("home.get_started.subtitle")}
           </p>
-          <NavLink to="">
+          <NavLink to="/setup-guide">
             <button
               className="bg-brand-600 text-slate-100 px-3 py-2 rounded-md font-black uppercase hover:bg-brand-500 hover:cursor-pointer"
               type="button"
@@ -149,7 +156,7 @@ export default function Home({ loaderData }: Route.ComponentProps) {
             >
                Linkedin
             </a>
-            <NavLink to="/terms">{t("home.footer.terms")}</NavLink>
+            {/* <NavLink to="/terms">{t("home.footer.terms")}</NavLink> */}
           </div>
           <p className="text-dark-400 font-medium">
             © {new Date().getFullYear()} José Pereira.{" "}
