@@ -20,7 +20,7 @@ export const SiteNavbar = () => {
         </button>
       </NavLink>
       <div className="flex items-center justify-end gap-4">
-        <SiteNavbarButton label={t("navbar.setup_guide")} to="" />
+        <SiteNavbarButton label={t("navbar.setup_guide")} to="/setup-guide" />
         <SiteNavbarButton label={t("navbar.faq")} to="" />
         <NavLink to="login">
           <button

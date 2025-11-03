@@ -46,5 +46,24 @@
     },
     "title": "Login"
   },
-  "navbar": { "faq": "FAQ", "login": "Login", "setup_guide": "Setup Guide" }
+  "navbar": { "faq": "FAQ", "login": "Login", "setup_guide": "Setup Guide" },
+  "setup_guide": {
+    "overview": {
+      "content": "Even though I would want to provide you with a simple set up experience, where you simply login on your Spotify account and use FeatherPlay, sadly I cannot do that. Since this a non-profit, open-source personal project, I cannot provide you a full Spotify experience (and neither it's my goal to replace Spotify). \n \n What I can do, is provide you with a feather-weight Spotify Client that you can use instead of Spotify Web Player site. \n \n So, a few requirements and steps are needed in order to allow FeatherPlay to be used as a Spotify Client app. I'll guide you through those steps, so the setup can remain as simple as possible. If you don't want to know more technical details, you can simply skip the next paragraphs and simply get started <setting-up-link>Setting Up</setting-up-link> all the things. \n \n Due to (understandable) Authorization and Quota limitations for open-source apps using the Spotify Web API, a single Web Client can only support up to 25 accounts, and they have to be added manually. The first iteration of FeatherPlay had that in mind, I've shared it with family & friends and added their accounts manually to FeatherPlay authorized users through the Spotify's Dashboard. \n \nI then thought to share the Github repo, and simply, more technical persons, would set up the project locally and run it on their machine. But that would be a very small audience, so I came up with this solution where you can setup your Client Id on the Login screen and use it directly from this site. \n \n If you're a developer and want to use it locally, you can still clone/fork the Github repo, follow the README and set it up to run on your machine.",
+      "title": "Overview"
+    },
+    "requirements": {
+      "content": "As I mentioned on the Overview section, there are some requirements needed for FeatherPlay to work: \n \n 1. You must have a Spotify Premium account. \n 2. You must create (or have) an App with a valid Client ID on your Spotify Account Dashboard. (The Setting Up section will help you with that!)\n 3. You must enjoy listen to music without bloat. \n \n An that's all. Now, just go to the Setting Up section and follow it.",
+      "title": "Requirements"
+    },
+    "setting_up": {
+      "content": "In order to use FeatherPlay you need to create a <semibold>Spotify App</semibold>. You can follow the official <spotify-guide-link>Spotify Guide</spotify-guide-link>, using the information provided below, or follow this page steps.\n\n Before any of that, please be sure to check out the <requirements-link>Requirements</requirements-link> section.\n\nSo, to create the App, go to your <spotify-dashboard-link>Spotify Dashboard</spotify-dashboard-link> and <semibold>click on the Create an App button</semibold> to open the following dialog box: \n\n <screenshot></screenshot> \n\nThen use the following information:\n\n <semibold>1. App Name:</semibold> FeatherPlay \n<semibold>2. App Description:</semibold> FeatherPlay \n <semibold>3. Redirect URIs:</semibold> <underline>https://jpcpereira93.github.io/feather-play/play</underline>. Then click <semibold>Add</semibold>. \n <semibold>4.</semibold> Put a tick on <semibold>Web API</semibold> and <semibold>Web Playback SDK</semibold>.\n <semibold>5.</semibold> Put a tick in the <semibold>Developer Terms of Service checkbox.</semibold> \n \n When you finish filling all the information, your screen should look like the image above. \n \n Finally, click on <semibold>Save</semibold>. \n \n You'll be redirected to your <semibold>Spotify Dashboard</semibold>. Now, you only need to do 2 things: \n\n 1. Click on the FeatherPlay app.\n2. Copy/Save the value on the <semibold>Client ID</semibold> field. \n \n Now you can Login in FeatherPlay and insert the Client ID when prompted. \n \n And that's it, now you can enjoy a true feather-weight Spotify player.",
+      "title": "Setting Up"
+    },
+    "side_menu": {
+      "overview": "Overview",
+      "requirements": "Requirements",
+      "setting_up": "Setting up"
+    }
+  }
 }

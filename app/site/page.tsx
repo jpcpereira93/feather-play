@@ -1,7 +1,12 @@
 import { useTranslation } from "react-i18next";
 import { NavLink } from "react-router";
 
-import { Carousel, type CarouselImage, FeatureList } from "~/site/components";
+import {
+  Carousel,
+  type CarouselImage,
+  FeatureList,
+  SiteBox,
+} from "~/site/components";
 import type { IFeatureItem } from "~/site/models";
 import type { Route } from "./+types/page";
 
@@ -83,20 +88,22 @@ export default function Home({ loaderData }: Route.ComponentProps) {
       </div>
       <section className="h-full w-full snap-center flex flex-col items-center p-20 gap-8">
         <h1 className="text-3xl font-black">{t("home.about.title")}</h1>
-        <article className="flex w-2/3 bg-dark-900/50 rounded-xl p-6">
-          <div>
-            <span className="font-bold">
-              {t("home.about.content.header")}
-              <br />
-              <br />
-            </span>
-            <p className="whitespace-pre-line">
-              {t("home.about.content.description")}
-            </p>
-            <span className="flex pt-3 text-2xl text-center font-extrabold">
-              {t("home.about.content.catch_phrase")}
-            </span>
-          </div>
+        <article className="w-2/3">
+          <SiteBox rounded>
+            <div>
+              <span className="font-bold">
+                {t("home.about.content.header")}
+                <br />
+                <br />
+              </span>
+              <p className="whitespace-pre-line">
+                {t("home.about.content.description")}
+              </p>
+              <span className="flex pt-3 text-2xl text-center font-extrabold">
+                {t("home.about.content.catch_phrase")}
+              </span>
+            </div>
+          </SiteBox>
         </article>
       </section>
       <section className="snap-center h-full w-full flex flex-col items-center p-20 gap-20">
