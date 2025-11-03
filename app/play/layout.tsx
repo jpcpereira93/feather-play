@@ -11,6 +11,16 @@ import {
 
 import type { Route } from "./+types/layout";
 
+export function meta() {
+  return [
+    { title: "FeatherPlay - Web player: The feather weight Spotify Client" },
+    {
+      name: "description",
+      content: "FeatherPlay - Web player: The feather weight Spotify Client",
+    },
+  ];
+}
+
 export function shouldRevalidate() {
   return false;
 }

@@ -19,7 +19,7 @@ import {
   useTransferSpotifyPlaybackToCurrentDeviceMutation,
 } from "~/play/core/hooks";
 import type { ISpotifyPlayerState } from "~/play/core/models";
-
+import { getArtistsString } from "~/play/core/utils";
 import { PlayerButton } from "../PlayerButton";
 import { PlayerVolume } from "../PlayerVolume";
 import { TrackProgress } from "../TrackProgress";
@@ -69,11 +69,13 @@ export const Player = ({ deviceId, player }: PlayerProps) => {
   }: ISpotifyPlayerState) => {
     const { album, artists, id, name } = current_track;
 
+    const artistString = getArtistsString(artists);
+
     setCurrentTrackId(id);
     setIsPlaying(!paused);
 
     setAlbumImage(album.images.at(0)?.url);
-    setCurrentTrackArtists(artists.map(({ name }) => name).join(" & "));
+    setCurrentTrackArtists(artistString);
     setCurrentTrackName(name);
     setIsPaused(paused);
     setIsRepeatMode(!!repeat_mode);
