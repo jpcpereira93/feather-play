@@ -1,22 +1,24 @@
-FROM node:20-alpine AS development-dependencies-env
+FROM node:lts-alpine AS base
 COPY . /app
-WORKDIR /app
-RUN npm ci
+ENV PNPM_HOME="/pnpm"
+ENV PATH="$PNPM_HOME:$PATH"
+RUN corepack enable
 
-FROM node:20-alpine AS production-dependencies-env
-COPY ./package.json package-lock.json /app/
-WORKDIR /app
-RUN npm ci --omit=dev
+RUN pnpm i -g http-server
 
-FROM node:20-alpine AS build-env
-COPY . /app/
-COPY --from=development-dependencies-env /app/node_modules /app/node_modules
+FROM base AS dependencies
+COPY ./package.json ./pnpm-lock.yaml /app/
 WORKDIR /app
-RUN npm run build
+RUN pnpm install --frozen-lockfile
 
-FROM node:20-alpine
-COPY ./package.json package-lock.json /app/
-COPY --from=production-dependencies-env /app/node_modules /app/node_modules
-COPY --from=build-env /app/build /app/build
+FROM dependencies AS build
+COPY ./package.json ./pnpm-lock.yaml /app/
+COPY --from=dependencies /app/node_modules /app/node_modules
 WORKDIR /app
-CMD ["npm", "run", "start"]
+RUN pnpm run build
+
+FROM build
+COPY --from=build /app/build/client /app/build/client
+WORKDIR /app
+EXPOSE 5173
+CMD ["npx", "http-server", "build/client", "-p 5173"]
