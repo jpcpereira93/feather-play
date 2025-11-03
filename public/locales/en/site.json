@@ -1,4 +1,25 @@
 {
+  "faq": {
+    "title": "Frequently Asked Questions",
+    "questions": {
+      "client_id": {
+        "answer": "The Client ID is needed for Authorization on the Spotify Web API. Yes, I  know it is and hassle having to create it, but it's due to (understandable) Spotify Limits and Quota for open-source Clients.  \n  \n  It's totally understandable that they require it due to multiple reasons  (Security being the main one), and even the fact that they allow using  their API should be praised.  \n  \n  And yes, it's totally safe to create the Client ID. The value is only  used on requests made through the Spotify Official API, and it's not  stored in any Database. Actually, FeatherPlay only sends requests to the  Spotify API, so information about you is not saved anywhere.  \n  \n  This is an Open-Source project, so all the code is publicly available  and can be validated.",
+        "title": "Why is the Client ID needed? Is it safe?"
+      },
+      "feature_x": {
+        "answer": "There are some more features planned on the roadmap, but since I only maintain the app on my free time, I can't give a Date to when such feature will be available. \n \n You can always request some feature, but please keep in that this app is my own view of a Web Player, so it's not guaranteed that it will be implemented. \n \n Also, if I keep adding more features, it'll become a clone from the Spotify Official Web Player. At that point this project stops making any sense since you can always use the official one as it is much more polished than FeatherPlay.",
+        "title": "Will Feature X be available?"
+      },
+      "native_apps": {
+        "answer": " Yes, Native Windows and MacOS apps are planned. \n \n Regarding mobile ones, it's not impossible, but it's highly unlikely that they'll be available due to commercial usage and licenses.",
+        "title": "Are Native/Mobile apps planned?"
+      },
+      "own_version": {
+        "answer": "Yes, you can create your own version. This is an Open-Source project, so if you're a Software Developer (or an aspiring one), feel totally free to fork the GitHub repo and do any modifications that fit your needs.",
+        "title": "Can I create my own version?"
+      }
+    }
+  },
   "home": {
     "about": {
       "title": "What is FeatherPlay?",

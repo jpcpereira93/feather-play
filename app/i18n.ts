@@ -14,6 +14,7 @@ i18n
       escapeValue: false, // not needed for react as it escapes by default
     },
     ns: ["play", "site"],
+    supportedLngs: ["en"],
   });
 
 export default i18n;
