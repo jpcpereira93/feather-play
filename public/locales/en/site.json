@@ -53,8 +53,12 @@
       "title": "Overview"
     },
     "requirements": {
-      "content": "As I mentioned on the Overview section, there are some requirements needed for FeatherPlay to work: \n \n 1. You must have a Spotify Premium account. \n 2. You must create (or have) an App with a valid Client ID on your Spotify Account Dashboard. (The Setting Up section will help you with that!) \n 3. You must enjoy listen to music without bloat. \n \n An that's all. Now, just go to the Setting Up section and follow it.",
+      "content": "As I mentioned on the Overview section, there are some requirements needed for FeatherPlay to work: \n \n 1. You must have a Spotify Premium account. \n 2. You must create (or have) an App with a valid Client ID on your Spotify Account Dashboard. (The Setting Up section will help you with that!)\n 3. You must enjoy listen to music without bloat. \n \n An that's all. Now, just go to the Setting Up section and follow it.",
       "title": "Requirements"
+    },
+    "setting_up": {
+      "content": "In order to use FeatherPlay you need to create a <semibold>Spotify App</semibold>. You can follow the official <spotify-guide-link>Spotify Guide</spotify-guide-link>, using the information provided below, or follow this page steps.\n\n So, to create the App, go to your <spotify-dashboard-link>Spotify Dashboard</spotify-dashboard-link> and <semibold>click on the Create an App button</semibold> to open the following dialog box: \n\n <screenshot></screenshot> \n\nThen use the following information:\n\n <semibold>1. App Name:</semibold> FeatherPlay \n<semibold>2. App Description:</semibold> FeatherPlay \n <semibold>3. Redirect URIs:</semibold> <underline>https://jpcpereira93.github.io/feather-play/play</underline>. Then click <semibold>Add</semibold>. \n <semibold>4.</semibold> Put a tick on <semibold>Web API</semibold> and <semibold>Web Playback SDK</semibold>.\n <semibold>5.</semibold> Put a tick in the <semibold>Developer Terms of Service checkbox.</semibold> \n \n When you finish filling all the information, your screen should look like the image above. \n \n Finally, click on <semibold>Save</semibold>. \n \n You'll be redirected to your <semibold>Spotify Dashboard</semibold>. Now, you only need to do 2 things: \n\n 1. Click on the FeatherPlay app.\n2. Copy/Save the value on the <semibold>Client ID</semibold> field. \n \n Now you can Login in FeatherPlay and insert the Client ID when prompted. \n \n And that's it, now you can enjoy a true feather-weight Spotify player.",
+      "title": "Setting Up"
     },
     "side_menu": {
       "overview": "Overview",
