@@ -63,12 +63,6 @@ export const links: Route.LinksFunction = () => [
   },
   {
     rel: "preload",
-    href: `${BASE_URL}screenshots/6.png`,
-    as: "image",
-    type: "image/png",
-  },
-  {
-    rel: "preload",
     href: `${BASE_URL}logos/feather-play-logo.png`,
     as: "image",
     type: "image/png",
