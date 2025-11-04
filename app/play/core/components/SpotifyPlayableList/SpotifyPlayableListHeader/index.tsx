@@ -67,7 +67,7 @@ export const SpotifyPlayableListHeader = React.memo(
       >
         <div className="flex h-full w-full items-center justify-between">
           <div className="h-full w-full grid grid-cols-[200px_1fr] gap-6">
-            <div className="rounded-lg overflow-hidden">
+            <div className="h-[200px] rounded-lg overflow-hidden">
               <img src={getImgSrc()} alt={name}></img>
             </div>
             <div className="flex flex-col justify-end gap-4 py-1 overflow-hidden">
@@ -111,15 +111,15 @@ export const SpotifyPlayableListHeaderSkeleton = React.memo(() => (
       <div className="h-full w-full grid grid-cols-[200px_1fr] gap-6">
         <div className="rounded-lg overflow-hidden h-[200px] bg-dark-600"></div>
         <div className="flex flex-col justify-end gap-4 py-1 overflow-hidden">
-          <h2 className="font-semibold bg-dark-600 text-transparent h-fit w-fit rounded-lg">
+          <h2 className="font-semibold bg-dark-600 text-transparent my-[2px] h-[16px] w-fit rounded-lg">
             Placeholder
           </h2>
           <div className="flex flex-col">
-            <h1 className="text-7xl font-black truncate overflow-hidden bg-dark-600 text-transparent h-fit w-fit rounded-lg pb-3">
+            <h1 className="text-7xl font-black truncate overflow-hidden bg-dark-600 text-transparent h-[72px] w-fit rounded-lg mb-3">
               Music name
             </h1>
           </div>
-          <p className="flex items-center gap-1 text-sm bg-dark-600 text-transparent h-fit w-fit rounded-lg">
+          <p className="flex items-center gap-1 text-sm bg-dark-600 text-transparent my-[3px] h-[14px] w-fit rounded-lg">
             <span className="font-semibold">Owner name</span>•
             <span>xx tracks</span>
           </p>

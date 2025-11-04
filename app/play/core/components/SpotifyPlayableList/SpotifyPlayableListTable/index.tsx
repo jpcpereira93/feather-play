@@ -64,7 +64,7 @@ export const SpotifyPlayableListTable = ({
   };
 
   return (
-    <div className="overflow-auto" onScroll={onScroll}>
+    <div className="overflow-auto min-h-full" onScroll={onScroll}>
       <table className="w-full">
         <SpotifyPlayableListTableHead hasAlbum={hasAlbum} />
         <tbody>
@@ -92,15 +92,6 @@ export const SpotifyPlayableListTable = ({
   );
 };
 
-export const SpotifyPlayableListTableSkeleton = ({
-  hasAlbum,
-}: SpotifyPlayableListTableBaseProps) => (
-  <table className="w-full">
-    <SpotifyPlayableListTableHead hasAlbum={hasAlbum} />
-    <tbody>
-      {getPlaceholderArray(10).map((value) => (
-        <SpotifyPlayableListTableRowSkeleton hasAlbum={hasAlbum} key={value} />
-      ))}
-    </tbody>
-  </table>
+export const SpotifyPlayableListTableSkeleton = () => (
+  <table className="w-full"></table>
 );
