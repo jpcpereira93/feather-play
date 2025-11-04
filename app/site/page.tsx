@@ -20,27 +20,27 @@ export function meta() {
 const CAROUSEL_IMAGES: CarouselImage[] = [
   {
     label: "Image 1",
-    src: "/screenshots/1.png",
+    src: "screenshots/1.png",
   },
   {
     label: "Image 2",
-    src: "/screenshots/2.png",
+    src: "screenshots/2.png",
   },
   {
     label: "Image 3",
-    src: "/screenshots/3.png",
+    src: "screenshots/3.png",
   },
   {
     label: "Image 4",
-    src: "/screenshots/4.png",
+    src: "screenshots/4.png",
   },
   {
     label: "Image 5",
-    src: "/screenshots/5.png",
+    src: "screenshots/5.png",
   },
   {
     label: "Image 6",
-    src: "/screenshots/6.png",
+    src: "screenshots/6.png",
   },
 ];
 
@@ -91,7 +91,7 @@ export default function Home({ loaderData }: Route.ComponentProps) {
           <h1 className="text-3xl font-black">{t("home.about.title")}</h1>
           <img
             className="h-20 w-20"
-            src="/logos/feather-play-logo.png"
+            src="logos/feather-play-logo.png"
             alt="FeatherPlay"
           ></img>
         </div>

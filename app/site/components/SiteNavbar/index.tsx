@@ -18,7 +18,7 @@ export const SiteNavbar = () => {
         >
           <img
             className="h-6 w-6"
-            src="/logos/feather-play-logo.png"
+            src="logos/feather-play-logo.png"
             alt="FeatherPlay"
           ></img>
           FeatherPlay
