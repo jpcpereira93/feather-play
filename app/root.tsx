@@ -36,7 +36,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body
-        className="antialiased bg-neutral-100 dark:bg-dark-800 dark:text-dark-400 tracking-tight select-none
+        className="antialiased bg-dark-800 text-dark-400 tracking-tight select-none
 "
       >
         {children}

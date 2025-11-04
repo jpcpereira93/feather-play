@@ -3,6 +3,10 @@ import { Form, redirect } from "react-router";
 
 import type { Route } from "./+types/page";
 
+export function meta() {
+  return [{ title: "Login | FeatherPlay" }];
+}
+
 export async function clientAction({ request }: Route.ClientActionArgs) {
   const formData = await request.formData();
   const spotifyClientId = formData.get("spotifyClientId");
