@@ -1,5 +1,9 @@
 import { useTranslation } from "react-i18next";
 
+export function meta() {
+  return [{ title: "Requirements | FeatherPlay" }];
+}
+
 export default function SetupGuideRequirements() {
   const { t } = useTranslation("site");
 

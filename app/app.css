@@ -15,7 +15,6 @@
   --color-dark-700: oklch(0.3209 0.0247 265.56);
   --color-dark-800: oklch(0.2844 0.0198 264.19);
   --color-dark-900: oklch(0.2224 0.0198 264.19);
-  
 
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
@@ -44,6 +43,24 @@
 
 html,
 body {
+    /* Change Autocomplete styles in Chrome*/
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  textarea:-webkit-autofill,
+  textarea:-webkit-autofill:hover,
+  textarea:-webkit-autofill:focus,
+  select:-webkit-autofill,
+  select:-webkit-autofill:hover,
+  select:-webkit-autofill:focus {
+    border: 1px solid transparent;
+    -webkit-text-fill-color: var(--color-dark-400);
+    -webkit-box-shadow: 0 0 0px 1000px transparent inset;
+    box-shadow: 0 0 0px 1000px transparent inset;
+    transition: background-color 5000s ease-in-out 0s;
+    color: var(--color-dark-400);
+  }
+
   scrollbar-color: var(--color-dark-600) transparent;
 
   @media (prefers-color-scheme: dark) {

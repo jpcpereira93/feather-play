@@ -2,6 +2,10 @@ import { useTranslation } from "react-i18next";
 
 import { FaqQuestion } from "./components";
 
+export function meta() {
+  return [{ title: "FAQ | FeatherPlay" }];
+}
+
 export default function FAQ() {
   const { t } = useTranslation("site");
 

@@ -1,6 +1,10 @@
 import { Trans, useTranslation } from "react-i18next";
 import { NavLink } from "react-router";
 
+export function meta() {
+  return [{ title: "Setting Up | FeatherPlay" }];
+}
+
 export default function SetupGuideRequirements() {
   const { t } = useTranslation("site");
 
@@ -43,7 +47,7 @@ export default function SetupGuideRequirements() {
               <div
                 className="h-90"
                 style={{
-                  backgroundImage: 'url("/screenshots/create-spotify-app.png")',
+                  backgroundImage: `url("${import.meta.env.BASE_URL}screenshots/create-spotify-app.png")`,
                   backgroundRepeat: "no-repeat",
                   backgroundSize: "contain",
                 }}
