@@ -9,7 +9,7 @@ i18n
   .use(initReactI18next)
   .init({
     backend: {
-      loadPath: "/feather-play/locales/{{lng}}/{{ns}}.json",
+      loadPath: `${import.meta.env.BASE_URL}locales/{{lng}}/{{ns}}.json`,
     },
     defaultNS: "play",
     fallbackLng: "en",
