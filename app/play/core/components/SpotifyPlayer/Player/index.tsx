@@ -72,11 +72,11 @@ export const Player = ({ deviceId, player }: PlayerProps) => {
     shuffle,
     track_window: { current_track },
   }: ISpotifyPlayerState) => {
-    const { album, artists, id, name } = current_track;
+    const { album, artists, id, linked_from, name } = current_track;
 
     const artistString = getArtistsString(artists);
 
-    setCurrentTrackId(id);
+    setCurrentTrackId(linked_from?.id ?? id);
     setIsPlaying(!paused);
 
     setAlbumImage(album.images.at(0)?.url);
