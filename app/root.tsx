@@ -12,8 +12,10 @@ import type { Route } from "./+types/root";
 import "./app.css";
 import "./i18n";
 
+const { BASE_URL } = import.meta.env;
+
 export const links: Route.LinksFunction = () => [
-  { rel: "icon", type: "image/x-icon", href: "favicon.ico" },
+  { rel: "icon", type: "image/x-icon", href: `${BASE_URL}favicon.ico` },
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
   {
     rel: "preconnect",
@@ -21,10 +23,55 @@ export const links: Route.LinksFunction = () => [
     crossOrigin: "anonymous",
   },
   {
+    rel: "preconnect",
+    href: "https://api.spotify.com",
+    crossOrigin: "anonymous",
+  },
+  {
     rel: "stylesheet",
     href: "https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap",
   },
+  {
+    rel: "preload",
+    href: `${BASE_URL}screenshots/1.png`,
+    as: "image",
+    type: "image/png",
+  },
+  {
+    rel: "preload",
+    href: `${BASE_URL}screenshots/2.png`,
+    as: "image",
+    type: "image/png",
+  },
+  {
+    rel: "preload",
+    href: `${BASE_URL}screenshots/3.png`,
+    as: "image",
+    type: "image/png",
+  },
+  {
+    rel: "preload",
+    href: `${BASE_URL}screenshots/4.png`,
+    as: "image",
+    type: "image/png",
+  },
+  {
+    rel: "preload",
+    href: `${BASE_URL}screenshots/5.png`,
+    as: "image",
+    type: "image/png",
+  },
+  {
+    rel: "preload",
+    href: `${BASE_URL}logos/feather-play-logo.png`,
+    as: "image",
+    type: "image/png",
+  },
 ];
+
+export function HydrateFallback() {
+  return <></>;
+}
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (

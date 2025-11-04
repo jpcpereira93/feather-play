@@ -83,7 +83,11 @@ export const Carousel = ({ images }: CarouselProps) => {
           { "animate-move-in-right": animateRight },
         )}
       >
-        <img src={currentImages[0].src} alt={currentImages[0].label} />
+        <img
+          src={currentImages[0].src}
+          alt={currentImages[0].label}
+          fetchPriority="high"
+        />
       </div>
       <div
         className={classNames(
@@ -114,7 +118,11 @@ export const Carousel = ({ images }: CarouselProps) => {
           { "animate-move-in-right": animateRight },
         )}
       >
-        <img src={currentImages[3].src} alt={currentImages[3].label} />
+        <img
+          src={currentImages[3].src}
+          alt={currentImages[3].label}
+          fetchPriority="high"
+        />
       </div>
       <div
         className={classNames(
@@ -123,7 +131,11 @@ export const Carousel = ({ images }: CarouselProps) => {
           { "animate-move-in-right": animateRight },
         )}
       >
-        <img src={currentImages[4].src} alt={currentImages[4].label} />
+        <img
+          src={currentImages[4].src}
+          alt={currentImages[4].label}
+          fetchPriority="high"
+        />
       </div>
       <button
         className="absolute right-5 top-30 z-10 text-dark-300 hover:cursor-pointer hover:text-slate-200"

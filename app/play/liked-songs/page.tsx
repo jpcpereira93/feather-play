@@ -1,10 +1,7 @@
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 
-import {
-  SpotifyPlayableList,
-  SpotifyPlayableListSkeleton,
-} from "~/play/core/components";
+import { SpotifyPlayableList } from "~/play/core/components";
 import {
   useDocumentTitle,
   useGetCurrentSpotifyUserProfileQuery,
@@ -41,27 +38,36 @@ export default function LikedSongs() {
     !likedSongs ||
     !userProfile
   ) {
-    return <SpotifyPlayableListSkeleton hasAlbum />;
+    return (
+      <SpotifyPlayableList>
+        <SpotifyPlayableList.HeaderSkeleton />
+        <SpotifyPlayableList.TableSkeleton />
+      </SpotifyPlayableList>
+    );
   }
 
   return (
-    <SpotifyPlayableList
-      hasAlbum
-      description=""
-      images={[
-        {
-          url: "https://misc.scdn.co/liked-songs/liked-songs-300.png",
-          height: 300,
-          width: 300,
-        },
-      ]}
-      uri={`${userProfile.uri}:collection`}
-      name={t("liked_songs.title")}
-      onLoadMore={onLoadMore}
-      owner={userProfile.display_name}
-      tracks={likedSongs.items}
-      total={likedSongs.total}
-      type="playlist"
-    />
+    <SpotifyPlayableList>
+      <SpotifyPlayableList.Header
+        description=""
+        images={[
+          {
+            url: "https://misc.scdn.co/liked-songs/liked-songs-300.png",
+            height: 300,
+            width: 300,
+          },
+        ]}
+        uri={`${userProfile.uri}:collection`}
+        name={t("liked_songs.title")}
+        owner={userProfile.display_name}
+        total={likedSongs.total}
+        type="playlist"
+      />
+      <SpotifyPlayableList.Table
+        hasAlbum
+        onEndReached={onLoadMore}
+        tracks={likedSongs.items}
+      />
+    </SpotifyPlayableList>
   );
 }
