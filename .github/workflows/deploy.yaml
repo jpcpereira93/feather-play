@@ -52,6 +52,9 @@ jobs:
         env:
           VITE_SPOTIFY_AUTH_REDIRECT_URL: https://jpcpereira93.github.io${{ steps.setup_pages.outputs.base_path }}/play
 
+      - name: Fix SPA on Github pages
+        run: cp ./build/client/index.html ./build/client/404.html
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
