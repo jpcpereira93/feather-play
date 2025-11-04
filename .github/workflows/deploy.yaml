@@ -50,7 +50,7 @@ jobs:
       - name: Build
         run: pnpm run build
         env:
-          VITE_SPOTIFY_AUTH_REDIRECT_URL: ${{ steps.setup_pages.outputs.base_path }}/play
+          VITE_SPOTIFY_AUTH_REDIRECT_URL: https://jpcpereira93.github.io${{ steps.setup_pages.outputs.base_path }}/play
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
