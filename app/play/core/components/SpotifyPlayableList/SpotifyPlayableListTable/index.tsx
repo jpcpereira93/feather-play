@@ -6,7 +6,6 @@ import type {
 import { useTranslation } from "react-i18next";
 
 import { usePlayingContext } from "~/play/core/context";
-import { usePlaySpotifyItemMutation } from "~/play/core/hooks";
 import { getPlaceholderArray, handleInfiniteScroll } from "~/play/core/utils";
 
 import {
@@ -21,6 +20,7 @@ interface SpotifyPlayableListTableBaseProps {
 interface SpotifyPlayableListTableProps {
   tracks: { track: Track | SimplifiedTrack }[] | SavedTrack[];
   onEndReached: () => void;
+  onPlayTrack: (uri: string) => void;
 }
 
 const SpotifyPlayableListTableHead = ({
@@ -51,13 +51,10 @@ const SpotifyPlayableListTableHead = ({
 export const SpotifyPlayableListTable = ({
   hasAlbum,
   onEndReached,
+  onPlayTrack,
   tracks,
 }: SpotifyPlayableListTableProps & SpotifyPlayableListTableBaseProps) => {
   const { currentTrackId, isPlaying } = usePlayingContext();
-
-  const { mutate: mutatePlaySpotifyItem } = usePlaySpotifyItemMutation();
-
-  const onPlayTrack = (uri: string) => mutatePlaySpotifyItem({ uris: [uri] });
 
   const onScroll = (event: React.UIEvent<HTMLDivElement>) => {
     handleInfiniteScroll(event, onEndReached, 200);
