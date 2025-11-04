@@ -1,6 +1,10 @@
 import { Trans, useTranslation } from "react-i18next";
 import { NavLink } from "react-router";
 
+export function meta() {
+  return [{ title: "Setup Guide | FeatherPlay" }];
+}
+
 export default function SetupGuideOverview() {
   const { t } = useTranslation("site");
 
